@@ -16,8 +16,6 @@ import com.master.core.service.BuyingService;
 import com.master.core.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(loader=AnnotationConfigContextLoader.class,
-//		classes = { ServletInitializer.class, WebMvcConfig.class, OAuth2ServerConfig.class, MethodSecurityConfig.class, SecurityConfiguration.class })
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class,classes = AppMvcConfig.class)
 @WebAppConfiguration
 @EnableWebMvc
@@ -43,6 +41,7 @@ public class TestBuyingService
     	buying.setQuantity(2);
     	buying.setRecordDate(Date.valueOf( "2015-03-07" ));
     	buying.setUnitPrice(50.5);
+    	buying.setStockpile(true);
     	
     	buyingService.addBuying(buying);
     }
@@ -66,6 +65,7 @@ public class TestBuyingService
     	buying.setQuantity(6);
     	buying.setRecordDate(Date.valueOf( "2015-03-07" ));
     	buying.setUnitPrice(66.56);
+    	buying.setStockpile(true);
     	buyingService.updateBuying(buying);
     }
     

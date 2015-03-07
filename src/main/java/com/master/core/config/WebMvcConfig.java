@@ -27,12 +27,16 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.master.core.dao.BuyingDao;
+import com.master.core.dao.SellingDao;
 import com.master.core.dao.UserDao;
 import com.master.core.dao.impl.BuyingDaoImpl;
+import com.master.core.dao.impl.SellingDaoImpl;
 import com.master.core.dao.impl.UserDaoImpl;
 import com.master.core.service.BuyingService;
+import com.master.core.service.SellingService;
 import com.master.core.service.UserService;
 import com.master.core.service.impl.BuyingServiceImpl;
+import com.master.core.service.impl.SellingServiceImpl;
 import com.master.core.service.impl.UserServiceImpl;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -64,6 +68,16 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public BuyingDao createBuyingDao() {
     	return new BuyingDaoImpl();
     }
+    
+    @Bean
+   	public SellingService createSellingService(SellingDao sellingDao) {
+   		return new SellingServiceImpl();
+   	}
+   	
+   @Bean
+   public SellingDao createSellingDao() {
+   	return new SellingDaoImpl();
+   }
     
     /*
      * multipartResolver

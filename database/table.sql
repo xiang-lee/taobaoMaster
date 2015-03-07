@@ -47,7 +47,7 @@ CREATE TABLE `tm_selling` (
   `is_repay_brush_buyer` tinyint(1) NOT NULL DEFAULT 0,
   `buyer` varchar(50) NOT NULL DEFAULT '',
   `deliver_date` DATE  NOT NULL DEFAULT '0000-00-00',
-  `product_id` bigint(4) unsigned NOT NULL,
    PRIMARY KEY (`order_id`),
-   FOREIGN KEY (`order_id`) REFERENCES `tm_order` (`id`)
+   FOREIGN KEY (`order_id`) REFERENCES `tm_order` (`id`),
+   FOREIGN KEY (`stockpile_id`) REFERENCES `tm_buying` (`order_id`)
 );

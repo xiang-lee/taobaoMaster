@@ -11,6 +11,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.master.core.demain.enu.Currency;
+
 
 @Entity
 @Table(name = "tm_order")	
@@ -22,7 +24,7 @@ public class Order {
 	private int quantity;
 	private Timestamp insertTime;
 	private double unitPrice;
-	private String currency="euro";
+	private String currency=Currency.euro.getLabel();
 	private double exchangeRate;
 	private String orderNumber;
 	
