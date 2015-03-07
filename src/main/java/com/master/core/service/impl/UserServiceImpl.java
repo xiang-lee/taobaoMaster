@@ -1,6 +1,7 @@
 package com.master.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.master.core.dao.UserDao;
@@ -27,7 +28,13 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User login(LoginDetail loginDetail) {
-		// TODO Auto-generated method stub
+		String username = loginDetail.getUsername();
+		String password = loginDetail.getPassword();
+		User user = userDao.findByUsername(username);
+		if(user == null) return null;
+		if(BCrypt.checkpw(password, user.getPassword())){
+			return user;
+		}
 		return null;
 	}
 

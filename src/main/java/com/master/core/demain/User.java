@@ -62,7 +62,9 @@ public class User {
 	}
 	
 	public void updateDetail(User user) {
-		if(user.getPassword().length()>0) password = EncodeUtil.encodeByBCrypt(user.getPassword());
+		if(!password.equals(user.getPassword())) {
+			password = EncodeUtil.encodeByBCrypt(user.getPassword());
+		}
 		if(user.getName().length() > 0) name = user.getName();
 	}
 }
