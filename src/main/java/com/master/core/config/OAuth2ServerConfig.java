@@ -71,16 +71,15 @@ public class OAuth2ServerConfig {
 			// @formatter:off
 			http
 //				.addFilterBefore(new SimpleCORSFilter(),ChannelProcessingFilter.class)
-				.requestMatchers().antMatchers("/admin/**","/user/**","/merchant/**", "/oauth/users/**", "/oauth/clients/**","/me")
+				.requestMatchers().antMatchers("/order/**","/user/**","/oauth/users/**", "/oauth/clients/**","/me")
 			.and()
 				.authorizeRequests()
 				
 				
 //.antMatchers("/login/**").access("#oauth2.hasScope('read')")
-.antMatchers("/user/**").access("#oauth2.hasScope('read')")
-.antMatchers("/admin/**").access("#oauth2.hasScope('read')")
-				
-.antMatchers("/admin/**").hasAnyRole("ADMIN")
+.antMatchers("/order/**").access("#oauth2.hasScope('read')")
+.antMatchers("/user/**").access("#oauth2.hasScope('read')")		
+
 					.antMatchers("/me").access("#oauth2.hasScope('read')")
 					.antMatchers("/photos").access("#oauth2.hasScope('read')")
 					.antMatchers("/photos/trusted/**").access("#oauth2.hasScope('trust')")

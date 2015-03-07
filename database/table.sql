@@ -8,7 +8,7 @@ CREATE TABLE `tm_user` (
 );
 
 
-CREATE TABLE `tm_product` (
+CREATE TABLE `tm_order` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '',
   `record_date` DATE  NOT NULL DEFAULT '0000-00-00',
@@ -23,19 +23,18 @@ CREATE TABLE `tm_product` (
 
 
 CREATE TABLE `tm_buying` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
   `payer` varchar(50) NOT NULL DEFAULT '',
   `arrive_date` DATE  NOT NULL DEFAULT '0000-00-00',
   `remain` smallint(4) NOT NULL DEFAULT 0,
   `is_stockpile` tinyint(1) NOT NULL DEFAULT 0,
-  `product_id` bigint(4) unsigned NOT NULL,
-   FOREIGN KEY (`product_id`) REFERENCES `tm_product` (`id`),
-   PRIMARY KEY (`id`)
+   PRIMARY KEY (`order_id`),
+   FOREIGN KEY (`order_id`) REFERENCES `tm_order` (`id`)
 );
 
 
 CREATE TABLE `tm_selling` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) unsigned NOT NULL,
   `sell_unit_price` DECIMAL(8,2) NOT NULL DEFAULT 0.00,
   `postage` DECIMAL(6,2) NOT NULL DEFAULT 0.00,
   `sell_currency` varchar(10) NOT NULL DEFAULT 'cny',
@@ -49,6 +48,6 @@ CREATE TABLE `tm_selling` (
   `buyer` varchar(50) NOT NULL DEFAULT '',
   `deliver_date` DATE  NOT NULL DEFAULT '0000-00-00',
   `product_id` bigint(4) unsigned NOT NULL,
-   FOREIGN KEY (`product_id`) REFERENCES `tm_product` (`id`),
-   PRIMARY KEY (`id`)
+   PRIMARY KEY (`order_id`),
+   FOREIGN KEY (`order_id`) REFERENCES `tm_order` (`id`)
 );

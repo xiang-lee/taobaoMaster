@@ -7,13 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.master.core.util.EncodeUtil;
 
 
 @Entity
 @Table(name = "tm_user")	
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 	private long id;
 	private String username;

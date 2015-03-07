@@ -1,4 +1,4 @@
-package com.master.core.config;
+package com.master.service;
 
 import java.beans.PropertyVetoException;
 import java.sql.SQLException;
@@ -20,12 +20,12 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import com.master.core.config.DoNotTruncateMyUrls;
 import com.master.core.dao.BuyingDao;
 import com.master.core.dao.UserDao;
 import com.master.core.dao.impl.BuyingDaoImpl;
@@ -38,11 +38,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 
 @Configuration
-@EnableWebMvc
 @EnableTransactionManagement
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
-	
-	
+public class AppMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public UserService createUserService(UserDao userDao) {
@@ -108,8 +105,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	private Properties getHibernateProperties() {
         Properties prop = new Properties();
-        prop.put("hibernate.format_sql", "false");
-        prop.put("hibernate.show_sql", "false");
+        prop.put("hibernate.format_sql", "true");
+        prop.put("hibernate.show_sql", "true");
         prop.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return prop;
     }
@@ -172,5 +169,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    
     }
+    
 }

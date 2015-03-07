@@ -61,6 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                  http
             .authorizeRequests().antMatchers("/login.jsp","/social/facebook/**","/register/**","/public/**").permitAll().and()
             .authorizeRequests().antMatchers("/user/**").hasRole("USER").and()
+            .authorizeRequests().antMatchers("/order/**").hasRole("USER").and()
 //            .authorizeRequests().anyRequest().hasRole("USER").and()
             
 //           Use hasAnyRole() to apply multiple roles
