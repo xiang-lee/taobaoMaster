@@ -34,6 +34,13 @@ public class UserDaoImpl implements UserDao {
 	return  (User)sessionFactory.getCurrentSession().createQuery("from User where username=:username").
 			setParameter("username", username).uniqueResult();
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public User findById(long id) {
+		return (User) sessionFactory.getCurrentSession().createQuery("from User where id=:id")
+				.setParameter("id", id).uniqueResult();
+	}
 
 
 }

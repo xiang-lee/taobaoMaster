@@ -10,4 +10,6 @@ public interface UserService {
 	ViewUserEvent findByUsername(String username);
 
 	User login(LoginDetail loginDetail);
+
+	void updateUser(User user);
 }

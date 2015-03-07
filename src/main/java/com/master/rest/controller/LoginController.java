@@ -39,13 +39,6 @@ public class LoginController {
 	UserService userService;
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value = "public/test")
-	public ResponseEntity<?> test() {
-		return new ResponseEntity<String>("test!!!",HttpStatus.OK);
-	}
-	
-	
-	
 	@RequestMapping(method = RequestMethod.POST, value = "login")
     public ResponseEntity<?> login(@RequestBody LoginDetail loginDetail){
 		User user = userService.login(loginDetail);

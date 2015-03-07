@@ -30,6 +30,12 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void updateUser(User user) {
+		User newUser = userDao.findById(user.getId());
+		newUser.updateDetail(user);
+	}
 	
 
 }
