@@ -1,5 +1,7 @@
 package com.master.core.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
@@ -58,6 +60,16 @@ public class BuyingDaoImpl implements BuyingDao {
 		b.setRemain(buying.getRemain());
 		b.setStockpile(buying.isStockpile());
 		b.setUnitPrice(buying.getUnitPrice());
+	}
+
+	@Override
+	public List<Buying> findAllStockpiles() {
+		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=true").list();
+	}
+
+	@Override
+	public List<Buying> findAllAdditions() {
+		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=false").list();
 	}
 
 	

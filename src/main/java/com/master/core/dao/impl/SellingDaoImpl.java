@@ -1,5 +1,7 @@
 package com.master.core.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
@@ -41,6 +43,25 @@ public class SellingDaoImpl implements SellingDao {
 	@Override
 	public void deleteSelling(Selling selling) {
 		sessionFactory.getCurrentSession().delete(selling);
+	}
+
+	// Sold(卖出)		isSoldToFriend=false && isBrush=false
+	@Override
+	public List<Selling> findAllSolds() {
+		return sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=false and brush=false").list();
+	}
+
+	//Sold to friend(卖给朋友)	isSoldToFriend=true
+			
+	@Override
+	public List<Selling> findAllSoldsToFriend() {
+		return sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=true").list();
+	}
+
+	//Brush (刷单)	isBrush=true
+	@Override
+	public List<Selling> findAllBrushes() {
+		return sessionFactory.getCurrentSession().createQuery("from Selling where brush=true").list();
 	}
 
 

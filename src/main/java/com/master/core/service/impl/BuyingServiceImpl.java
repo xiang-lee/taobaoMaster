@@ -1,5 +1,7 @@
 package com.master.core.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +35,16 @@ public class BuyingServiceImpl implements BuyingService{
 	@Override
 	public void updateBuying(Buying buying) {
 		buyingDao.updateBuying(buying);
+	}
+
+	@Override
+	public List<Buying> findAllStockpiles() {
+		return buyingDao.findAllStockpiles();
+	}
+
+	@Override
+	public List<Buying> findAllAdditions() {
+		return buyingDao.findAllAdditions();
 	}
 
 	

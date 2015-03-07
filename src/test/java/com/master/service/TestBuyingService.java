@@ -1,5 +1,6 @@
 package com.master.service;
 import java.sql.Date;
+import java.util.List;
 
 
 import org.junit.Assert;
@@ -73,6 +74,17 @@ public class TestBuyingService
     public void testDeleteBuyingById()  {
     	buyingService.deleteBuying(1);
     	Assert.assertNull(buyingService.findById(1));
+    }
+    
+    /*
+     * stockpile
+     */
+    @Test
+    public void testFindAllStockpiles()  {
+    	List<Buying> stockpiles = buyingService.findAllStockpiles();
+    	for (Buying stockpile : stockpiles) {
+			System.out.println(stockpile);
+		}
     }
     
 }  

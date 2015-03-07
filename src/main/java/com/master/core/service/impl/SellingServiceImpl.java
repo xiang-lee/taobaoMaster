@@ -1,5 +1,7 @@
 package com.master.core.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +54,21 @@ public class SellingServiceImpl implements SellingService{
 		s.setSoldToFriend(newSelling.isSoldToFriend());
 		s.setStockpile(newSelling.getStockpile());
 		s.setUnitPrice(newSelling.getUnitPrice());
+	}
+
+	@Override
+	public List<Selling> findAllSolds() {
+		return sellingDao.findAllSolds();
+	}
+
+	@Override
+	public List<Selling> findAllSoldsToFriend() {
+		return sellingDao.findAllSoldsToFriend();
+	}
+
+	@Override
+	public List<Selling> findAllBrushes() {
+		return sellingDao.findAllBrushes();
 	}
 
 
