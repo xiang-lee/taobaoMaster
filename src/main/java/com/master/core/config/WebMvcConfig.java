@@ -28,15 +28,19 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.master.core.dao.BuyingDao;
 import com.master.core.dao.SellingDao;
+import com.master.core.dao.StatisticDao;
 import com.master.core.dao.UserDao;
 import com.master.core.dao.impl.BuyingDaoImpl;
 import com.master.core.dao.impl.SellingDaoImpl;
+import com.master.core.dao.impl.StatisticDaoImpl;
 import com.master.core.dao.impl.UserDaoImpl;
 import com.master.core.service.BuyingService;
 import com.master.core.service.SellingService;
+import com.master.core.service.StatisticService;
 import com.master.core.service.UserService;
 import com.master.core.service.impl.BuyingServiceImpl;
 import com.master.core.service.impl.SellingServiceImpl;
+import com.master.core.service.impl.StatisticServiceImpl;
 import com.master.core.service.impl.UserServiceImpl;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -78,6 +82,16 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
    public SellingDao createSellingDao() {
    	return new SellingDaoImpl();
    }
+   
+   @Bean
+  	public StatisticService createStatisticService(StatisticDao statisticDao) {
+  		return new StatisticServiceImpl();
+  	}
+  	
+  @Bean
+  public StatisticDao createStatisticDao() {
+  	return new StatisticDaoImpl();
+  }
     
     /*
      * multipartResolver
