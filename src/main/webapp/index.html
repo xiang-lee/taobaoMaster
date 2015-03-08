@@ -1,0 +1,100 @@
+<!-- <!doctype html> -->
+<!DOCTYPE html>
+<html lang="en" ng-app="tmApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taobao Master</title>
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="css/ad.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/notification.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css" />
+    <link href="framework/FooTable/css/footable.core.css" rel="stylesheet" type="text/css" />
+    <link href="framework/FooTable/css/footable.metro.css" rel="stylesheet" type="text/css" />
+
+    <!-- endbuild -->
+
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <body background="images/background2.jpg" class="background" ng-controller="ApplicationController">
+
+        
+
+</head>
+
+<body>
+
+   
+    <div ui-view></div>
+    
+    <!-- Pregress bar Modal -->
+<div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="images/progressbar.gif" class="icon" />
+                    <h4>Processing... 
+                       <!--  <button type="button" class="close" style="float: none;" data-dismiss="modal" aria-hidden="true">×</button> -->
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-notifications/notification.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="js/app.js"></script>
+        <script src="js/controllers/userController.js"></script>
+        <script src="js/controllers/componentController.js"></script>
+        <script src="js/services/componentService.js"></script>
+        <script src="js/services/userService.js"></script>
+        <script src="js/services/adService.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/directives.js"></script>
+        <script src="js/main.js"></script>
+        <script src="framework/FooTable/js/footable.js" type="text/javascript"></script>
+        <script src="framework/FooTable/js/footable.paginate.js" type="text/javascript"></script>
+        <script src="framework/FooTable/js/footable.sort.js" type="text/javascript"></script>
+        <script src="framework/FooTable/js/footable.filter.js" type="text/javascript"></script>
+    <!-- endbuild -->
+
+
+</body>
+
+</html>
+
+

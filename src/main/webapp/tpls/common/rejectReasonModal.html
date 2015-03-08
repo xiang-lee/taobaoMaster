@@ -1,0 +1,33 @@
+<!-- Reject Reason Modal form -->
+<div class="modal fade bs-modal-sm" id="rejectForm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="signin">
+            <fieldset>
+            <!-- Message-->
+            <div class="control-group">
+              <label for="name">
+                    Reject Reason</label>
+                <textarea name="reason" id="reason" class="form-control" rows="9" cols="25" placeholder="Enter Reason"></textarea>
+            </div>
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button ng-click="rejectAd(currentAdId,adIndex)" data-dismiss="modal" align="center" class="btn btn-success">OK</button>
+              </div>
+            </div>
+            </fieldset>
+        </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+      <center>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
