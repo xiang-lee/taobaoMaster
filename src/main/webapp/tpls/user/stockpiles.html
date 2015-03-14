@@ -4,52 +4,163 @@
 </script>
 
 
-<h1 align="center"><span class="label label-success">囤货信息</span></h1>
+<hr>
+<div align="center">
+	<div class="alert alert-warning" style="width:50%;" align="center">日期格式请用：<p class="label label-warning">YYYY-MM-DD</p></div>
+</div>
+
+
+<h3 align="center"><span class="label label-primary">添加囤货信息</span></h3>
+<hr>
+<div class="container">
+	<table class="footable" style="width:100%;" data-filter="#filter" border="1"  align="center">
+		<thead>
+			<tr>
+				<th data-sort-ignore="true">物品名称</th>
+				<th data-sort-ignore="true">记录时间<span class="label label-warning">YYYY-MM-DD</span></th>
+				<th data-sort-ignore="true">成本单价</th>
+				<th data-sort-ignore="true">物品个数</th>
+				<th data-sort-ignore="true">囤货剩余</th>
+				<th data-sort-ignore="true">币种</th>
+				<th data-sort-ignore="true">汇率</th>
+				<th data-sort-ignore="true">订单号</th>
+				<th data-sort-ignore="true">支付人</th>
+				<th data-sort-ignore="true">预计到达北京时间<span class="label label-warning">YYYY-MM-DD</span></th>
+				<th data-sort-ignore="true">添加</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<input ng-model="newOrder.name" type="text"/>
+				</td>
+
+				<td>
+					<input ng-model="newOrder.recordDate" type="text" class="form-control"/>
+				</td>
+
+				<td>
+					<input ng-model="newOrder.unitPrice" type="text" class="form-control input-sm" />
+				</td>
+				<td>
+					<input ng-model="newOrder.quantity" type="text" class="form-control input-sm" />
+				</td>
+				<td>
+					<input ng-model="newOrder.remain" type="text" class="form-control input-sm" />
+				</td>
+				<td>
+					<select ng-model="newOrder.currency">
+					  <option value="euro">euro</option>
+					  <option value="cny">cny</option>
+					</select>
+				</td>
+				<td>
+					<input ng-model="newOrder.exchangeRate" type="text" class="form-control input-sm" />
+				</td>
+				<td>
+					<input ng-model="newOrder.orderNumber" type="text" class="form-control input-sm" />
+				</td>
+				<td>
+					<select ng-model="newOrder.payer">
+					  <option value="顾珺">顾珺</option>
+					  <option value="邵雨薇">邵雨薇</option>
+					</select>
+					<!-- <input ng-model="newOrder.payer" type="text" class="form-control input-sm" /> -->
+				</td>
+				<td>
+					<input ng-model="newOrder.arriveDate" type="text"  />
+				</td>
+				<td><span ng-click="addBuying()" class="btn btn-success">添加</span></a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<hr>
+
+<h3 align="center"><span class="label label-success">囤货信息</span></h3>
 <hr>
 <div align="center">搜索:<input id="filter" type="text" ></div>
 <div class="container">
-	<table class="footable" style="width:95%;" data-filter="#filter" data-page-size="3" data-page-navigation=".pagination"  border="1"  align="center">
+	<table class="footable" style="width:100%;" data-filter="#filter" data-page-size="3" data-page-navigation=".pagination"  border="1"  align="center">
 		<thead>
 			<tr>
 				<!-- data-sort-ignore="true" -->
-				<th data-sort-initial="descending">id</th>
+				<!-- <th data-sort-initial="descending">id</th> -->
 				<th>物品名称</th>
 				<th>记录时间</th>
-				<th>成本单价</th>
-				<th>物品个数</th>
+				<th data-type="numeric">成本单价</th>
+				<th data-type="numeric">物品个数</th>
+				<th data-type="numeric">囤货剩余</th>
 				<th>币种</th>
-				<th>汇率</th>
+				<th data-type="numeric">汇率</th>
 				<th>订单号</th>
 				<th>支付人</th>
 				<th>预计到达北京时间</th>
-				<th>囤货剩余</th>
-				<th>删除</th>
+				<th data-sort-ignore="true">更新</th>
+				<th data-sort-ignore="true">删除</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="order in orders">
-				<td>{{order.id}}</td>
-				<td>{{order.name}}</td>
-				<td>{{order.recordDate}}</td>
-				<td>{{order.unitPrice}}</td>
-				<td>{{order.quantity}}</td>
-				<td>{{order.currency}}</td>
-				<td>{{order.exchangeRate}}</td>
-				<td>{{order.orderNumber}}</td>
-				<td>{{order.payer}}</td>
-				<td>{{order.arriveDate}}</td>
-				<td>{{order.remain}}</td>
+				<!-- <td>{{order.id}}</td> -->
+				<td>
+					<input ng-model="order.name" type="text"/>
+					<span ng-hide=true>{{order.name}}</span>
+				</td>
+
+				<td>
+					<input ng-model="order.recordDate" type="text" style="width:100px"/>
+					<span ng-hide=true>{{order.recordDate | milliseconds}}</span>
+				</td>
+
+				<td>
+					<input ng-model="order.unitPrice" type="text" class="form-control input-sm" />
+					<span ng-hide=true>{{order.unitPrice}}</span>
+				</td>
+				<td>
+					<input ng-model="order.quantity" type="text" class="form-control input-sm" />
+					<span ng-hide=true>{{order.quantity}}</span>
+				</td>
+				<td>
+					<input ng-model="order.remain" type="text" class="form-control input-sm" />
+					<span ng-hide=true>{{order.remain}}</span>
+				</td>
+
+				<td>
+					<input ng-model="order.currency" type="text" class="form-control input-sm" />
+					<span ng-hide=true>{{order.currency}}</span>
+				</td>
+				<td>
+					<input ng-model="order.exchangeRate" type="text" class="form-control input-sm" />
+					<span ng-hide=true>{{order.exchangeRate}}</span>
+				</td>
+				<td>
+					<input ng-model="order.orderNumber" type="text" class="form-control input-sm" />
+					<span ng-hide=true>{{order.orderNumber}}</span>
+				</td>
+				<td>
+					<input ng-model="order.payer" type="text" class="form-control input-sm" />
+					<span ng-hide=true>{{order.payer}}</span>
+				</td>
+				<td>
+					<input ng-model="order.arriveDate" type="text" style="width:100px" />
+					<span ng-hide=true>{{order.arriveDate | milliseconds}}</span>
+				</td>
+				<td><span ng-click="updateBuying(order)" class="btn btn-success">更新</span></a></td>
 				<td><button ng-click="delete(order.id)" type="button" class="btn btn-danger">删除</button></td>
 			</tr>
 		</tbody>
 		<tfoot>
 		<tr>
-			<td colspan="12">
+			<td colspan="13">
 				<div class="pagination pagination-centered"></div>
 			</td>
 		</tr>
 		</tfoot>
 	</table>
 </div>
+
+
 
 <div ng-include="'tpls/footer.html'"></div>

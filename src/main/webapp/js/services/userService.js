@@ -40,7 +40,6 @@ userServices.factory('loginService',function($window, $http,$rootScope,Cookie) {
 userServices.factory('userService',function($window, $http,$rootScope) {
   return {
 
-     //Contact us
      getStockpiles: function() {
       return $http.get('/order/stockpile').then(function(obj, status) {
             return obj.data;
@@ -55,6 +54,19 @@ userServices.factory('userService',function($window, $http,$rootScope) {
         });
      },
 
+     updateBuying: function(order) {
+      return $http.put('/order/buying',order).then(function(obj, status) {
+            return obj.data;
+        });
+     },
+
+     addBuying: function(order) {
+      return $http.post('/order/buying',order).then(function(obj, status) {
+            return obj.data;
+        });
+     },
+
+     
       agreeOffer: function(offerId) {
             return $http.post('/user/offer/'+offerId+'/agreeOffer')
             .then(function(obj, status) {

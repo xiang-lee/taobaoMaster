@@ -4,9 +4,14 @@ daFilters.filter('filter_1', ['$scope',
     function($scope) {}
 ]);
 
-daFilters.filter('filter_2', ['$scope',
-    function($scope) {}
-]);
+
+daFilters.filter('milliseconds', function() {
+  return function(input) {
+    var date = new Date(input);
+   	var milliseconds = date.getTime(); 
+    return milliseconds;
+  };
+});
 
 daFilters.filter('range', function() {
   return function(input, total) {

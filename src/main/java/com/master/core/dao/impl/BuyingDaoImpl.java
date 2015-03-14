@@ -64,12 +64,12 @@ public class BuyingDaoImpl implements BuyingDao {
 
 	@Override
 	public List<Buying> findAllStockpiles() {
-		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=true").list();
+		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=true order by id desc").list();
 	}
 
 	@Override
 	public List<Buying> findAllAdditions() {
-		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=false").list();
+		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=false order by id desc").list();
 	}
 
 	
