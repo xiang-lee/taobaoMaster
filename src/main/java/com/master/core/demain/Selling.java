@@ -25,8 +25,8 @@ public class Selling extends Order{
 	private boolean isSoldToFriend=false;
 	private boolean isBrush=false;
 	private boolean isRepayBrushBuyer=false;
-	private String buyer;
-	private Date deliverDate;
+	private String buyer="";
+	private Date deliverDate = Date.valueOf( "2015-01-01" );;
 	@Column(name="buyer")
 	public String getBuyer() {
 		return buyer;

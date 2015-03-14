@@ -48,20 +48,20 @@ public class SellingDaoImpl implements SellingDao {
 	// Sold(卖出)		isSoldToFriend=false && isBrush=false
 	@Override
 	public List<Selling> findAllSolds() {
-		return sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=false and brush=false").list();
+		return sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=false and brush=false order by id desc").list();
 	}
 
 	//Sold to friend(卖给朋友)	isSoldToFriend=true
 			
 	@Override
 	public List<Selling> findAllSoldsToFriend() {
-		return sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=true").list();
+		return sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=true order by id desc").list();
 	}
 
 	//Brush (刷单)	isBrush=true
 	@Override
 	public List<Selling> findAllBrushes() {
-		return sessionFactory.getCurrentSession().createQuery("from Selling where brush=true").list();
+		return sessionFactory.getCurrentSession().createQuery("from Selling where brush=true order by id desc").list();
 	}
 
 

@@ -48,17 +48,17 @@ tmApp.config(function($stateProvider,$urlRouterProvider,$httpProvider,$provide){
     .state('brushes',{
             url:'/brushes',
             templateUrl:'tpls/user/brushes.html',
-            controller:'brushesCtrl'
+            controller:'sellingCtrl'
         })
     .state('sold',{
             url:'/sold',
             templateUrl:'tpls/user/sold.html',
-            controller:'soldCtrl'
+            controller:'sellingCtrl'
         })
     .state('soldtofriend',{
             url:'/soldtofriend',
             templateUrl:'tpls/user/soldtofriend.html',
-            controller:'soldtofriendCtrl'
+            controller:'sellingCtrl'
         })
     
     ;

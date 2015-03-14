@@ -72,6 +72,11 @@ public class BuyingDaoImpl implements BuyingDao {
 		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=false order by id desc").list();
 	}
 
+	@Override
+	public List<Buying> findAllStockpilesWithRemain() {
+		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=true and remain>0 order by id desc").list();
+	}
+
 	
 
 

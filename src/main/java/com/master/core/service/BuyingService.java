@@ -14,4 +14,5 @@ public interface BuyingService {
 	void updateBuying(Buying buying);
 	List<Buying> findAllStockpiles();
 	List<Buying> findAllAdditions();
+	List<Buying> findAllStockpilesWithRemain();
 }

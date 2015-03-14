@@ -49,29 +49,8 @@ userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
     }
    
     $scope.newOrder.currency = 'euro';
-   }
+   };
    
-
-   $scope.delete = function(orderId) {
-    if(popupService.showPopup('少女，你确定删除这条记录?')){
-      userService.deleteBuying(orderId).then(function(res){
-        notify('删除成功');
-        $scope.initializeOrders();
-      });
-    }
-   };
-
-   $scope.updateBuying = function(order) {
-      order.quantity = parseInt(order.quantity,10);
-      order.unitPrice = parseFloat(order.unitPrice).toFixed(2);
-      order.exchangeRate = parseFloat(order.exchangeRate).toFixed(2);
-      order.remain = parseInt(order.remain,10);
-      userService.updateBuying(order).then(function(res){
-        notify('更新成功');
-        $scope.initializeOrders();
-      });
-   };
-
    $scope.addBuying = function() {
       var order = $scope.newOrder;
       //set is_stockpile based on current state name
@@ -93,13 +72,116 @@ userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
       });
    };
 
+   $scope.delete = function(orderId) {
+    if(popupService.showPopup('少女，你确定删除这条记录?')){
+      userService.deleteBuying(orderId).then(function(res){
+        notify('删除成功');
+        $scope.initializeOrders();
+      });
+    }
+   };
+
+   $scope.updateBuying = function(order) {
+      order.quantity = parseInt(order.quantity,10);
+      order.unitPrice = parseFloat(order.unitPrice).toFixed(2);
+      order.exchangeRate = parseFloat(order.exchangeRate).toFixed(2);
+      order.remain = parseInt(order.remain,10);
+      userService.updateBuying(order).then(function(res){
+        notify('更新成功');
+        $scope.initializeOrders();
+      });
+   };
+
+   
+   //initialize orders
    $scope.initializeOrders();
 });
 
 
 
-userCtrls.controller('brushesCtrl', function ($scope,$state,notify,userService) {
-   
+
+
+userCtrls.controller('sellingCtrl', function ($scope,$state,notify,userService,popupService) {
+   var currentStateName = $state.current.name;
+  //open foo table plugin
+  $('.footable').footable();
+  $scope.newOrder = {};
+   $scope.initializeOrders = function() {
+    //if current state is stockpile, invoke getStockpiles
+    if(currentStateName === 'brushes') {
+      userService.getBrushes().then(function(res) {
+        $scope.orders = res;
+      });
+    }
+    //if current state is additions, invoke getAdditions
+    else if(currentStateName === 'sold') {
+      userService.getSold().then(function(res) {
+        $scope.orders = res;
+      });
+      //get stockpiles in drop down
+      userService.getStockpilesWithRemain().then(function(res) {
+        $scope.stockpiles = res;
+      });
+    }
+    else if(currentStateName === 'soldtofriend') {
+      userService.getSoldtofriend().then(function(res) {
+        $scope.orders = res;
+      });
+      //get stockpiles in drop down
+      userService.getStockpilesWithRemain().then(function(res) {
+        $scope.stockpiles = res;
+      });
+    }
+    $scope.newOrder.currency = 'euro';
+   };
+
+   $scope.addSelling = function() {
+      var order = $scope.newOrder;
+      //set is_stockpile based on current state name
+      if(currentStateName === 'brushes') {
+        order.brush = true;
+      }
+      else if(currentStateName === 'sold') {
+        order.brush = false;
+        order.soldToFriend = false;
+      }
+      else if(currentStateName === 'soldtofriend') {
+        order.soldToFriend = true;
+      }
+      order.quantity = parseInt(order.quantity,10);
+      order.unitPrice = parseFloat(order.unitPrice).toFixed(2);
+      order.exchangeRate = parseFloat(order.exchangeRate).toFixed(2);
+      userService.addSelling(order).then(function(res){
+        notify('添加成功');
+        $scope.initializeOrders();
+        $scope.newOrder={};
+      });
+   };
+
+   $scope.delete = function(orderId) {
+    if(popupService.showPopup('少女，你确定删除这条记录?')){
+      userService.deleteSelling(orderId).then(function(res){
+        notify('删除成功');
+        $scope.initializeOrders();
+      });
+    }
+   };
+
+   $scope.updateSelling = function(order) {
+      order.quantity = parseInt(order.quantity,10);
+      order.unitPrice = parseFloat(order.unitPrice).toFixed(2);
+      order.exchangeRate = parseFloat(order.exchangeRate).toFixed(2);
+      userService.updateSelling(order).then(function(res){
+        notify('更新成功');
+        $scope.initializeOrders();
+      },function(error){
+        notify('少女，更新失败，检查日期的格式是否正确？');
+      });
+   };
+   //initialize orders
+   $scope.initializeOrders();
+
+
 });
 
 userCtrls.controller('soldCtrl', function ($scope,$state,notify,userService) {

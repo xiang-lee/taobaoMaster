@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.master.core.dao.BuyingDao;
 import com.master.core.dao.SellingDao;
+import com.master.core.demain.Buying;
 import com.master.core.demain.Selling;
 import com.master.core.service.SellingService;
 
@@ -15,9 +17,19 @@ public class SellingServiceImpl implements SellingService{
 	
 	@Autowired
 	private SellingDao sellingDao;
+	
+	@Autowired
+	private BuyingDao buyingDao;
 
 	@Override
 	public void addSelling(Selling selling) {
+		//reduce stockpile remain when the sold is from stockpile	
+		if(selling.getStockpile() != null && selling.getStockpile().getId()>0 ) {
+			Buying stockpile = buyingDao.findById(selling.getStockpile().getId());
+			if(stockpile.getRemain()-1 > 0) {
+				stockpile.setRemain(stockpile.getRemain()-1);
+			}
+		}
 		sellingDao.addSelling(selling);
 	}
 

@@ -67,6 +67,13 @@ public class OrderQueriesController {
 		List<Buying> stockpiles = buyingService.findAllStockpiles();
 		return new ResponseEntity<List<Buying>>(stockpiles, HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "order/stockpileWithRemain")
+	public ResponseEntity<?> getAllStockpilesWithRemain(Principal principal) {
+		List<Buying> stockpiles = buyingService.findAllStockpilesWithRemain();
+		return new ResponseEntity<List<Buying>>(stockpiles, HttpStatus.OK);
+	}
+
 
 	/*
 	 * Addition

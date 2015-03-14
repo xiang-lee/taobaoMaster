@@ -20,5 +20,7 @@ public interface BuyingDao {
 
 	List<Buying> findAllAdditions();
 
+	List<Buying> findAllStockpilesWithRemain();
+
 	
 }

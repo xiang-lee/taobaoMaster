@@ -47,6 +47,11 @@ public class BuyingServiceImpl implements BuyingService{
 		return buyingDao.findAllAdditions();
 	}
 
+	@Override
+	public List<Buying> findAllStockpilesWithRemain() {
+		return buyingDao.findAllStockpilesWithRemain();
+	}
+
 	
 
 }
