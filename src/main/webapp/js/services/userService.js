@@ -46,6 +46,13 @@ userServices.factory('userService',function($window, $http,$rootScope) {
         });
      },
 
+     getAdditions: function() {
+      return $http.get('/order/additions').then(function(obj, status) {
+            return obj.data;
+        });
+     },
+
+
      deleteBuying : function(orderId) {
         return $http.delete('/order/buying/'+orderId+'').then(function(obj, status) {
           return obj;

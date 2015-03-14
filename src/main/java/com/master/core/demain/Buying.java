@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name="order_id")
 public class Buying extends Order{
 	private String payer;
-	private Date arriveDate;
+	private Date arriveDate = Date.valueOf( "2015-01-01" );
 	private int remain;
 	private boolean isStockpile;
 	@Column(name = "arrive_date")

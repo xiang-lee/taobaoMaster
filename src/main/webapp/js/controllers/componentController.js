@@ -20,8 +20,8 @@ componentCtrls.controller('ApplicationController', function ($scope,$cookieStore
 
 
 
-componentCtrls.controller('homeCtrl', ['$scope','$state','$notification','userService',
-  function($scope,$state,$notification,userService) {
+componentCtrls.controller('homeCtrl', ['$scope','$state','userService',
+  function($scope,$state,userService) {
        
 }]);
 
@@ -56,12 +56,11 @@ componentCtrls.controller('HeaderCtrl', ['$scope','$cookieStore','$state','$loca
   }]);
 
 
-componentCtrls.controller('contactUsCtrl', function ($scope,$window,$notification,userService) {
+componentCtrls.controller('contactUsCtrl', function ($scope,$window,userService) {
   $scope.sendMessage = function() {
     console.log($scope.email);
     userService.contactUs($scope.email).then(function(res){
       $window.location.reload(true);
-      $notification.info("Successfully Email Sent", "", "");
     });
 
   }

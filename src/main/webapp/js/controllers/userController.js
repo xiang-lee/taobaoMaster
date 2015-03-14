@@ -23,17 +23,31 @@ userCtrls.controller('loginCtrl', ['$scope','$window','$rootScope', '$state','$r
 }]);
 
 
-userCtrls.controller('statisticCtrl', function ($scope,$state,$notification,userService) {
+userCtrls.controller('statisticCtrl', function ($scope,$state,notify,userService) {
    
 });
 
-userCtrls.controller('stockpilesCtrl', function ($scope,$state,$notification,userService,popupService) {
+userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
+  popupService,notify) {
+
+  var currentStateName = $state.current.name;
+  //open foo table plugin
   $('.footable').footable();
   $scope.newOrder = {};
    $scope.initializeOrders = function() {
-    userService.getStockpiles().then(function(res) {
-      $scope.orders = res;
-    });
+    //if current state is stockpile, invoke getStockpiles
+    if(currentStateName === 'stockpiles') {
+      userService.getStockpiles().then(function(res) {
+        $scope.orders = res;
+      });
+    }
+    //if current state is additions, invoke getAdditions
+    else if(currentStateName === 'additions') {
+      userService.getAdditions().then(function(res) {
+        $scope.orders = res;
+      });
+    }
+   
     $scope.newOrder.currency = 'euro';
    }
    
@@ -41,6 +55,7 @@ userCtrls.controller('stockpilesCtrl', function ($scope,$state,$notification,use
    $scope.delete = function(orderId) {
     if(popupService.showPopup('少女，你确定删除这条记录?')){
       userService.deleteBuying(orderId).then(function(res){
+        notify('删除成功');
         $scope.initializeOrders();
       });
     }
@@ -51,21 +66,28 @@ userCtrls.controller('stockpilesCtrl', function ($scope,$state,$notification,use
       order.unitPrice = parseFloat(order.unitPrice).toFixed(2);
       order.exchangeRate = parseFloat(order.exchangeRate).toFixed(2);
       order.remain = parseInt(order.remain,10);
-      console.log(order);
       userService.updateBuying(order).then(function(res){
+        notify('更新成功');
         $scope.initializeOrders();
       });
    };
 
    $scope.addBuying = function() {
       var order = $scope.newOrder;
-      //set is_stockpile = true;
-      order.stockpile = true;
+      //set is_stockpile based on current state name
+      if(currentStateName === 'stockpiles') {
+        order.stockpile = true;
+      }
+      else if(currentStateName === 'additions') {
+        order.stockpile = false;
+      }
+      
       order.quantity = parseInt(order.quantity,10);
       order.unitPrice = parseFloat(order.unitPrice).toFixed(2);
       order.exchangeRate = parseFloat(order.exchangeRate).toFixed(2);
       order.remain = parseInt(order.remain,10);
       userService.addBuying(order).then(function(res){
+        notify('添加成功');
         $scope.initializeOrders();
         $scope.newOrder={};
       });
@@ -74,18 +96,20 @@ userCtrls.controller('stockpilesCtrl', function ($scope,$state,$notification,use
    $scope.initializeOrders();
 });
 
-userCtrls.controller('brushesCtrl', function ($scope,$state,$notification,userService) {
+
+
+userCtrls.controller('brushesCtrl', function ($scope,$state,notify,userService) {
    
 });
 
-userCtrls.controller('soldCtrl', function ($scope,$state,$notification,userService) {
+userCtrls.controller('soldCtrl', function ($scope,$state,notify,userService) {
    
 });
 
-userCtrls.controller('soldtofriendCtrl', function ($scope,$state,$notification,userService) {
+userCtrls.controller('soldtofriendCtrl', function ($scope,$state,notify,userService) {
    
 });
 
-userCtrls.controller('additionsCtrl', function ($scope,$state,$notification,userService) {
+userCtrls.controller('additionsCtrl', function ($scope,$state,notify,userService) {
    
 });

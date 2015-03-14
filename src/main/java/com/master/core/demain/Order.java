@@ -26,7 +26,7 @@ public class Order {
 	private double unitPrice;
 	private String currency=Currency.euro.getLabel();
 	private double exchangeRate;
-	private String orderNumber;
+	private String orderNumber="";
 	
 	
 	@Column(name = "currency")

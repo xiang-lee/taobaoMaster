@@ -9,7 +9,7 @@ var tmApp = angular.module('tmApp', [
     'userServices',
     'tmDirectives', 
     'ngCookies',
-    'notifications'
+    'cgNotify'
 ]);
 
 
@@ -38,7 +38,12 @@ tmApp.config(function($stateProvider,$urlRouterProvider,$httpProvider,$provide){
     .state('stockpiles',{
             url:'/stockpiles',
             templateUrl:'tpls/user/stockpiles.html',
-            controller:'stockpilesCtrl'
+            controller:'buyingCtrl'
+        })
+    .state('additions',{
+            url:'/additions',
+            templateUrl:'tpls/user/additions.html',
+            controller:'buyingCtrl'
         })
     .state('brushes',{
             url:'/brushes',
@@ -55,11 +60,7 @@ tmApp.config(function($stateProvider,$urlRouterProvider,$httpProvider,$provide){
             templateUrl:'tpls/user/soldtofriend.html',
             controller:'soldtofriendCtrl'
         })
-    .state('additions',{
-            url:'/additions',
-            templateUrl:'tpls/user/additions.html',
-            controller:'additionsCtrl'
-        })
+    
     ;
 
 
