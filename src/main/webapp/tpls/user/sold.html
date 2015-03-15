@@ -6,7 +6,9 @@
 
 <hr>
 <div align="center">
-	<div class="alert alert-warning" style="width:50%;" align="center">日期格式请用：<p class="label label-warning">YYYY-MM-DD</p></div>
+	<div class="alert alert-warning" style="width:50%;" align="center">日期格式请用：
+		<p>如果选择“来自囤货”，该囤货的剩余量会自动减去卖出的个数</p>
+	</div>
 </div>
 
 
@@ -46,7 +48,9 @@
 				</td>
 
 				<td>
-					<input ng-model="newOrder.recordDate" type="text" class="input1"/>
+					<input type="text" ng-model="newOrder.recordDate" datepicker-popup="{{format}}"  is-open="opened" datepicker-options="dateOptions" ng-required="true" class="input1"/>
+					 <span type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></span>
+					<!-- <input ng-model="newOrder.recordDate" type="text" class="input1"/> -->
 				</td>
 
 				<td>

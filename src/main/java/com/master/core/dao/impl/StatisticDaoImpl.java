@@ -53,8 +53,8 @@ public class StatisticDaoImpl implements StatisticDao {
 		//Find five types of order
 		List<Buying> stockpiles = sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=true").list();
 		List<Buying> additions = sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=false").list();
-		List<Selling> solds = sessionFactory.getCurrentSession().createQuery("from Sellling where soldToFriend=false and brush=false").list();
-		List<Selling> soldToFirend = sessionFactory.getCurrentSession().createQuery("from Sellling where soldToFriend=true").list();
+		List<Selling> solds = sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=false and brush=false").list();
+		List<Selling> soldToFirend = sessionFactory.getCurrentSession().createQuery("from Selling where soldToFriend=true").list();
 		Statistic statistic = StatisticHelper.getStatistic(stockpiles, additions, solds, soldToFirend);
 		return statistic;
 	}

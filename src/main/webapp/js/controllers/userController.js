@@ -11,7 +11,7 @@ userCtrls.controller('loginCtrl', ['$scope','$window','$rootScope', '$state','$r
         return loginService.login($scope.loginData).then(function(res) {
            // $state.go('home');
            // $window.location.reload(true);
-           $window.location.href = $state.href('home',{},{reload:true});
+           $window.location.href = $state.href('statistic',{},{reload:true});
            $window.location.reload(true);
         }, function(err) {
           $scope.showLoginError = true;
@@ -24,11 +24,19 @@ userCtrls.controller('loginCtrl', ['$scope','$window','$rootScope', '$state','$r
 
 
 userCtrls.controller('statisticCtrl', function ($scope,$state,notify,userService) {
-   
+   userService.getStatistic().then(function(res){
+      $scope.statistic = res;
+   });
 });
 
 userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
   popupService,notify) {
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.opened = true;
+  };
 
   var currentStateName = $state.current.name;
   //open foo table plugin
@@ -101,7 +109,15 @@ userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
 
 
 
-userCtrls.controller('sellingCtrl', function ($scope,$state,notify,userService,popupService) {
+userCtrls.controller('sellingCtrl', function ($scope,$state,notify,
+  userService,popupService) {
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.opened = true;
+  };
+
    var currentStateName = $state.current.name;
   //open foo table plugin
   $('.footable').footable();
@@ -184,14 +200,4 @@ userCtrls.controller('sellingCtrl', function ($scope,$state,notify,userService,p
 
 });
 
-userCtrls.controller('soldCtrl', function ($scope,$state,notify,userService) {
-   
-});
 
-userCtrls.controller('soldtofriendCtrl', function ($scope,$state,notify,userService) {
-   
-});
-
-userCtrls.controller('additionsCtrl', function ($scope,$state,notify,userService) {
-   
-});

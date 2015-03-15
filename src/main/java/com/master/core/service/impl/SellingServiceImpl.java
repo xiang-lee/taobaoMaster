@@ -27,7 +27,7 @@ public class SellingServiceImpl implements SellingService{
 		if(selling.getStockpile() != null && selling.getStockpile().getId()>0 ) {
 			Buying stockpile = buyingDao.findById(selling.getStockpile().getId());
 			if(stockpile.getRemain()-1 > 0) {
-				stockpile.setRemain(stockpile.getRemain()-1);
+				stockpile.setRemain(stockpile.getRemain()-selling.getQuantity());
 			}
 		}
 		sellingDao.addSelling(selling);

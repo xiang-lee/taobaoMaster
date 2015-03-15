@@ -40,6 +40,13 @@ userServices.factory('loginService',function($window, $http,$rootScope,Cookie) {
 userServices.factory('userService',function($window, $http,$rootScope) {
   return {
 
+    
+     getStatistic: function() {
+      return $http.get('/order/statistic').then(function(obj, status) {
+            return obj.data;
+        });
+     },
+
      getStockpiles: function() {
       return $http.get('/order/stockpile').then(function(obj, status) {
             return obj.data;
@@ -75,7 +82,7 @@ userServices.factory('userService',function($window, $http,$rootScope) {
             return obj.data;
         });
      },
-     
+
 
 
      deleteBuying : function(orderId) {

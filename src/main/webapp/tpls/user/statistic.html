@@ -1,4 +1,36 @@
 <div ng-include="'tpls/header.html'"></div>
-    
-<h1>statistic</h1>
+<script type="text/javascript">
+	$('.footable').footable();
+</script>
+
+
+
+
+<h3 align="center"><span class="label label-primary">统计</span></h3>
+<hr>
+<div class="container">
+	<table class="footable" style="width:100%;" data-filter="#filter" border="1"  align="center">
+		<thead>
+			<tr>
+				<th data-sort-ignore="true"><div align="center">总支出</div></th>
+				<th data-sort-ignore="true"><div align="center">总收入</div></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<h2 align="center"><span class="label label-success">{{statistic.totalExpense | number:2}}</span></h2>
+				</td>
+
+				<td>
+					<h2 align="center"><span class="label label-success">{{statistic.totalEarning | number:2}}</span></h2>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+
+
 <div ng-include="'tpls/footer.html'"></div>

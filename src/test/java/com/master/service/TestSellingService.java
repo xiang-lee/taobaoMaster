@@ -1,6 +1,8 @@
 package com.master.service;
 import java.sql.Date;
 
+import javax.annotation.Resource;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +18,7 @@ import com.master.core.demain.Selling;
 import com.master.core.demain.enu.Currency;
 import com.master.core.service.BuyingService;
 import com.master.core.service.SellingService;
+import com.master.core.service.StatisticService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class,classes = AppMvcConfig.class)
@@ -28,6 +31,9 @@ public class TestSellingService
     SellingService sellingService;
 	@Autowired
     BuyingService buyingService;
+	
+	@Resource
+	private StatisticService statisticService;
 
     @Test
     public void testAddSelling()  {
@@ -86,6 +92,11 @@ public class TestSellingService
     public void testDeleteSellingById()  {
     	sellingService.deleteSelling(3);
     	Assert.assertNull(sellingService.findById(3));
+    }
+    
+    @Test
+    public void testGetStatistic()  {
+    	System.out.println(statisticService.findStatistic());
     }
     
 }  

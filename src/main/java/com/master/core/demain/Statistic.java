@@ -16,5 +16,10 @@ public class Statistic {
 	public void setTotalExpense(double totalExpense) {
 		this.totalExpense = totalExpense;
 	}
+	@Override
+	public String toString() {
+		return "Statistic [totalExpense=" + totalExpense + ", totalEarning="
+				+ totalEarning + "]";
+	}
 	
 }

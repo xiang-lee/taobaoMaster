@@ -5,9 +5,6 @@
 
 
 <hr>
-<div align="center">
-	<div class="alert alert-warning" style="width:50%;" align="center">日期格式请用：<p class="label label-warning">YYYY-MM-DD</p></div>
-</div>
 
 
 <h3 align="center"><span class="label label-primary">添加囤货信息</span></h3>
@@ -36,7 +33,9 @@
 				</td>
 
 				<td>
-					<input ng-model="newOrder.recordDate" type="text" class="form-control"/>
+					<!-- <input ng-model="newOrder.recordDate" type="text" class="form-control"/> -->
+					<input type="text" ng-model="newOrder.recordDate" datepicker-popup="{{format}}"  is-open="opened" datepicker-options="dateOptions" ng-required="true" class="input1"/>
+					 <span type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></span>
 				</td>
 
 				<td>
