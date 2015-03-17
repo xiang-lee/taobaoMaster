@@ -32,11 +32,12 @@ userCtrls.controller('statisticCtrl', function ($scope,$state,notify,userService
 userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
   popupService,notify) {
 
-  $scope.open = function($event) {
+  $scope.open = function($event,opened) {
     $event.preventDefault();
     $event.stopPropagation();
-    $scope.opened = true;
+    $scope[opened] = true;
   };
+
 
   var currentStateName = $state.current.name;
   //open foo table plugin

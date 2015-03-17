@@ -34,11 +34,7 @@
 				<th data-sort-ignore="true">减价</th>
 				<th data-sort-ignore="true">确认收货</th>
 				<th data-sort-ignore="true">是否退款</th>
-
-
-
-				
-				<th data-sort-ignore="true">添加</th>
+				<!-- <th data-sort-ignore="true">添加</th> -->
 			</tr>
 		</thead>
 		<tbody>
@@ -104,12 +100,19 @@
 					  <option value="true">已经退款</option>
 					</select>
 				</td>	
-				
-
-				<td><span ng-click="addSelling()" class="btn btn-success">添加</span></a></td>
 			</tr>
 		</tbody>
 	</table>
+	<table border="1">
+		<tr>
+			<td>
+				<textarea ng-model="newOrder.comment" placeholder="备注"></textarea>
+			</td>
+			<td><span ng-click="addSelling()" class="btn btn-success">添加</span></a></td>
+		</tr>
+	</table>
+	
+
 </div>
 
 <hr>
@@ -140,6 +143,7 @@
 				<th>确认收货</th>
 				<th>是否退款</th>
 
+				<th>备注</th>
 				<th>更新</th>
 				<th>删除</th>
 
@@ -160,23 +164,23 @@
 				</td>
 
 				<td>
-					<input ng-model="order.unitPrice" type="text" class="form-control input-sm" />
+					<input ng-model="order.unitPrice" type="text" class="input2" />
 					<span ng-hide=true>{{order.unitPrice}}</span>
 				</td>
 				<td>
-					<input ng-model="order.quantity" type="text" class="form-control input-sm" />
+					<input ng-model="order.quantity" type="text" class="input2" />
 					<span ng-hide=true>{{order.quantity}}</span>
 				</td>
 				<td>
-					<input ng-model="order.currency" type="text" class="form-control input-sm" />
+					<input ng-model="order.currency" type="text" class="input2" />
 					<span ng-hide=true>{{order.currency}}</span>
 				</td>
 				<td>
-					<input ng-model="order.exchangeRate" type="text" class="form-control input-sm" />
+					<input ng-model="order.exchangeRate" type="text" class="input2" />
 					<span ng-hide=true>{{order.exchangeRate}}</span>
 				</td>
 				<td>
-					<input ng-model="order.orderNumber" type="text" class="form-control input-sm" />
+					<input ng-model="order.orderNumber" type="text" class="input2" />
 					<span ng-hide=true>{{order.orderNumber}}</span>
 				</td>
 
@@ -186,12 +190,12 @@
 				</td>
 
 				<td>
-					<input ng-model="order.sellUnitPrice" type="text" class="form-control input-sm" />
+					<input ng-model="order.sellUnitPrice" type="text" class="input2" />
 					<span ng-hide=true>{{order.sellUnitPrice}}</span>
 				</td>
 
 				<td>
-					<input ng-model="order.postage" type="text" class="form-control input-sm" />
+					<input ng-model="order.postage" type="text" class="input2" />
 					<span ng-hide=true>{{order.postage}}</span>
 				</td>
 
@@ -203,19 +207,23 @@
 				</td>
 
 				<td>
-					<input ng-model="order.reducedPrice" type="text" class="form-control input-sm" />
+					<input ng-model="order.reducedPrice" type="text" class="input2" />
 					<span ng-hide=true>{{order.reducedPrice}}</span>
 				</td>
 				
 				<td>
-					<input ng-model="order.received" type="text" class="form-control input-sm" />
+					<input ng-model="order.received" type="text" class="input2" />
 					<span ng-hide=true>{{order.received}}</span>
 				</td>
 
 				<td>
-					<input ng-model="order.refund" type="text" class="form-control input-sm" />
+					<input ng-model="order.refund" type="text" class="input2" />
 					<span ng-hide=true>{{order.refund}}</span>
 				</td>	
+
+				<td>
+					<textarea rows="1" cols="10" ng-model="order.comment" ></textarea>
+				</td>
 
 
 				<td><span ng-click="updateSelling(order)" class="btn btn-success">更新</span></a></td>
@@ -224,7 +232,7 @@
 		</tbody>
 		<tfoot>
 		<tr>
-			<td colspan="16">
+			<td colspan="17">
 				<div class="pagination pagination-centered"></div>
 			</td>
 		</tr>

@@ -21,6 +21,7 @@
 				<th data-sort-ignore="true">币种</th>
 				<th data-sort-ignore="true">汇率</th>
 				<th data-sort-ignore="true">支付人</th>
+				<th data-sort-ignore="true">备注</th>
 				<th data-sort-ignore="true">添加</th>
 			</tr>
 		</thead>
@@ -32,8 +33,8 @@
 
 				<td>
 					<!-- <input ng-model="newOrder.recordDate" type="text" class="form-control"/> -->
-					<input type="text" ng-model="newOrder.recordDate" datepicker-popup="{{format}}"  is-open="opened" datepicker-options="dateOptions" ng-required="true" class="input1"/>
-					 <span type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></span>
+					<input type="text" ng-model="newOrder.recordDate" datepicker-popup="{{format}}"  is-open="opened1" datepicker-options="dateOptions" ng-required="true" class="input1"/>
+					 <span type="button" class="btn btn-default" ng-click="open($event,'opened1')"><i class="glyphicon glyphicon-calendar"></i></span>
 				</td>
 
 				<td>
@@ -56,7 +57,9 @@
 					  <option value="顾珺">顾珺</option>
 					  <option value="邵雨薇">邵雨薇</option>
 					</select>
-					<!-- <input ng-model="newOrder.payer" type="text" class="form-control input-sm" /> -->
+				</td>
+				<td>
+					<textarea ng-model="newOrder.comment" placeholder="备注"></textarea>
 				</td>
 				<td><span ng-click="addBuying()" class="btn btn-success">添加</span></a></td>
 			</tr>
@@ -82,6 +85,7 @@
 				<th>币种</th>
 				<th data-type="numeric">汇率</th>
 				<th>支付人</th>
+				<th>备注</th>
 				<th data-sort-ignore="true">更新</th>
 				<th data-sort-ignore="true">删除</th>
 			</tr>
@@ -120,13 +124,18 @@
 					<input ng-model="order.payer" type="text" class="form-control input-sm" />
 					<span ng-hide=true>{{order.payer}}</span>
 				</td>
+
+				<td>
+					<textarea ng-model="order.comment" placeholder="备注"></textarea>
+				</td>
+
 				<td><span ng-click="updateBuying(order)" class="btn btn-success">更新</span></a></td>
 				<td><button ng-click="delete(order.id)" type="button" class="btn btn-danger">删除</button></td>
 			</tr>
 		</tbody>
 		<tfoot>
 		<tr>
-			<td colspan="13">
+			<td colspan="14">
 				<div class="pagination pagination-centered"></div>
 			</td>
 		</tr>

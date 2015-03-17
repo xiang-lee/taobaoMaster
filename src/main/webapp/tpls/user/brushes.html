@@ -22,6 +22,7 @@
 				<th data-sort-ignore="true">订单号</th>
 				<th data-sort-ignore="true">刷单人</th>
 				<th data-sort-ignore="true">是否已还刷单人钱</th>
+				<th data-sort-ignore="true">备注</th>
 				<th data-sort-ignore="true">添加</th>
 			</tr>
 		</thead>
@@ -65,6 +66,9 @@
 					  <option value="false">没还</option>
 					</select>
 				</td>
+				<td>
+					<textarea ng-model="newOrder.comment" placeholder="备注"></textarea>
+				</td>
 				<td><span ng-click="addSelling()" class="btn btn-success">添加</span></a></td>
 			</tr>
 		</tbody>
@@ -91,6 +95,7 @@
 				<th>订单号</th>
 				<th>刷单人</th>
 				<th>是否已还刷单人钱</th>
+				<th>备注</th>
 				<th data-sort-ignore="true">更新</th>
 				<th data-sort-ignore="true">删除</th>
 			</tr>
@@ -134,10 +139,9 @@
 				</td>
 				<td>
 					<input ng-model="order.repayBrushBuyer" type="text" class="form-control input-sm" />
-					<!-- <select ng-model="order.repayBrushBuyer">
-					  <option value="true">已还</option>
-					  <option value="false">没还</option>
-					</select> -->
+				</td>
+				<td>
+					<textarea rows="1" cols="10" ng-model="order.comment" placeholder="备注"></textarea>
 				</td>
 				<td><span ng-click="updateSelling(order)" class="btn btn-success">更新</span></a></td>
 				<td><button ng-click="delete(order.id)" type="button" class="btn btn-danger">删除</button></td>

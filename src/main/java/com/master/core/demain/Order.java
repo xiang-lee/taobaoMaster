@@ -27,13 +27,19 @@ public class Order {
 	private String currency=Currency.euro.getLabel();
 	private double exchangeRate;
 	private String orderNumber="";
+	private String comment="";
 	
 	
+	@Column(name = "comment")
+	public String getComment() {
+		return comment;
+	}
+
 	@Column(name = "currency")
 	public String getCurrency() {
 		return currency;
 	}
-	
+
 	@Column(name = "exchange_rate")
 	public double getExchangeRate() {
 		return exchangeRate;
@@ -74,6 +80,10 @@ public class Order {
 	@Column(name = "unit_price")
 	public double getUnitPrice() {
 		return unitPrice;
+	}
+	
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	

@@ -9,8 +9,8 @@
 
 <h3 align="center"><span class="label label-primary">添加囤货信息</span></h3>
 <hr>
-<div class="container">
-	<table class="footable" style="width:100%;" data-filter="#filter" border="1"  align="center">
+<div>
+	<table class="footable" style="width:80%;" data-filter="#filter" border="1"  align="center">
 		<thead>
 			<tr>
 				<th data-sort-ignore="true">物品名称</th>
@@ -23,6 +23,7 @@
 				<th data-sort-ignore="true">订单号</th>
 				<th data-sort-ignore="true">支付人</th>
 				<th data-sort-ignore="true">预计到达北京时间<span class="label label-warning">YYYY-MM-DD</span></th>
+				<th data-sort-ignore="true">备注</th>
 				<th data-sort-ignore="true">添加</th>
 			</tr>
 		</thead>
@@ -34,8 +35,8 @@
 
 				<td>
 					<!-- <input ng-model="newOrder.recordDate" type="text" class="form-control"/> -->
-					<input type="text" ng-model="newOrder.recordDate" datepicker-popup="{{format}}"  is-open="opened" datepicker-options="dateOptions" ng-required="true" class="input1"/>
-					 <span type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></span>
+					<input type="text" ng-model="newOrder.recordDate" datepicker-popup="{{format}}"  is-open="opened1" datepicker-options="dateOptions" ng-required="true" class="input1"/>
+					 <span type="button" class="btn btn-default" ng-click="open($event,'opened1')"><i class="glyphicon glyphicon-calendar"></i></span>
 				</td>
 
 				<td>
@@ -64,11 +65,17 @@
 					  <option value="顾珺">顾珺</option>
 					  <option value="邵雨薇">邵雨薇</option>
 					</select>
-					<!-- <input ng-model="newOrder.payer" type="text" class="form-control input-sm" /> -->
 				</td>
 				<td>
-					<input ng-model="newOrder.arriveDate" type="text"  />
+					<input type="text" ng-model="newOrder.arriveDate" datepicker-popup="{{format}}"  is-open="opened2" datepicker-options="dateOptions" ng-required="true" class="input1"/>
+
+					 <span type="button" class="btn btn-default" ng-click="open($event,'opened2')"><i class="glyphicon glyphicon-calendar"></i></span>
 				</td>
+
+				<td>
+					<textarea ng-model="newOrder.comment" placeholder="备注"></textarea>
+				</td>
+
 				<td><span ng-click="addBuying()" class="btn btn-success">添加</span></a></td>
 			</tr>
 		</tbody>
@@ -80,8 +87,8 @@
 <h3 align="center"><span class="label label-success">囤货信息</span></h3>
 <hr>
 <div align="center">搜索:<input id="filter" type="text" ></div>
-<div class="container">
-	<table class="footable" style="width:100%;" data-filter="#filter" data-page-size="3" data-page-navigation=".pagination"  border="1"  align="center">
+<div >
+	<table class="footable" style="width:90%;" data-filter="#filter" data-page-size="3" data-page-navigation=".pagination"  border="1"  align="center">
 		<thead>
 			<tr>
 				<!-- data-sort-ignore="true" -->
@@ -96,6 +103,7 @@
 				<th>订单号</th>
 				<th>支付人</th>
 				<th>预计到达北京时间</th>
+				<th>备注</th>
 				<th data-sort-ignore="true">更新</th>
 				<th data-sort-ignore="true">删除</th>
 			</tr>
@@ -146,6 +154,11 @@
 					<input ng-model="order.arriveDate" type="text" style="width:100px" />
 					<span ng-hide=true>{{order.arriveDate | milliseconds}}</span>
 				</td>
+
+				<td>
+					<textarea ng-model="order.comment" placeholder="备注"></textarea>
+				</td>
+
 				<td><span ng-click="updateBuying(order)" class="btn btn-success">更新</span></a></td>
 				<td><button ng-click="delete(order.id)" type="button" class="btn btn-danger">删除</button></td>
 			</tr>

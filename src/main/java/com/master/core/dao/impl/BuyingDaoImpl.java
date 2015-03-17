@@ -60,6 +60,7 @@ public class BuyingDaoImpl implements BuyingDao {
 		b.setRemain(buying.getRemain());
 		b.setStockpile(buying.isStockpile());
 		b.setUnitPrice(buying.getUnitPrice());
+		b.setComment(buying.getComment());
 	}
 
 	@Override

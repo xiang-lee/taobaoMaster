@@ -52,7 +52,7 @@ public class ServletInitializer extends AbstractDispatcherServletInitializer {
 	protected Filter[] getServletFilters() {
 		//CORS: Enables cross-origin requests, allow grab resources from different domains
 		SimpleCORSFilter simpleCORSFilter = new SimpleCORSFilter();
-	    return new Filter[] { simpleCORSFilter};
+		return new Filter[] { simpleCORSFilter};
 	}
 	
 }

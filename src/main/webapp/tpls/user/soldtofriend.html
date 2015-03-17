@@ -32,11 +32,6 @@
 				<th data-sort-ignore="true">卖出单价</th>
 				<th data-sort-ignore="true">邮费</th>
 				<th data-sort-ignore="true">卖出币种</th>
-
-
-
-				
-				<th data-sort-ignore="true">添加</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -89,13 +84,18 @@
 					  <option value="cny">cny</option>
 					</select>
 				</td>
-
-				
-
-				<td><span ng-click="addSelling()" class="btn btn-success">添加</span></a></td>
 			</tr>
 		</tbody>
 	</table>
+	<table border="1">
+		<tr>
+			<td>
+				<textarea ng-model="newOrder.comment" placeholder="备注"></textarea>
+			</td>
+			<td><span ng-click="addSelling()" class="btn btn-success">添加</span></a></td>
+		</tr>
+	</table>
+
 </div>
 
 <hr>
@@ -124,6 +124,7 @@
 				<th>邮费</th>
 				<th>卖出币种</th>
 				
+				<th>备注</th>
 				<th>更新</th>
 				<th>删除</th>
 
@@ -191,6 +192,9 @@
 					</select>
 				</td>
 
+				<td>
+					<textarea rows="1" cols="10" ng-model="order.comment" ></textarea>
+				</td>
 
 
 				<td><span ng-click="updateSelling(order)" class="btn btn-success">更新</span></a></td>

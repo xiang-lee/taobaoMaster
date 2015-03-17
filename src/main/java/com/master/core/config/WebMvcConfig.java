@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Properties;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -139,6 +140,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         prop.put("hibernate.format_sql", "false");
         prop.put("hibernate.show_sql", "false");
         prop.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        prop.put("hibernate.connection.useUnicode", "true");
+        prop.put("hibernate.connection.characterEncoding", "true");
+        prop.put("hibernate.connection.charSet", "true");
+        
+        
+        
         return prop;
     }
 	
@@ -153,8 +160,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		cpd.setJdbcUrl("jdbc:mysql://localhost:3306/taobaomaster");
 		cpd.setUser("root");
 		cpd.setPassword("xiang55");
-		
-		
+
 		
 		//configure c3p0
 		cpd.setMinPoolSize(5);
@@ -163,8 +169,40 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		cpd.setMaxStatements(0);
 		cpd.setIdleConnectionTestPeriod(300);
 		cpd.setAcquireIncrement(1);
+		
+//		cpd.setMaxStatementsPerConnection(100);
+//		cpd.setMaxIdleTime(60);
+		
 		return cpd;
 	}
+	
+	
+	//use dbcp
+	/*@Bean(name = "dataSource")
+	public BasicDataSource dataSource() {
+		
+		BasicDataSource ds = new BasicDataSource();
+	    ds.setDriverClassName("com.mysql.jdbc.Driver");
+	    
+	    //local host
+//		ds.setUrl("jdbc:mysql://localhost:3306/dressads");
+//		ds.setUsername("root");
+//		ds.setPassword("xiang55");
+		
+		
+		//aws rds
+		ds.setUrl("jdbc:mysql://taobaomaster.c6wolwxvnl1t.eu-central-1.rds.amazonaws.com:3306/taobaomaster");
+		ds.setUsername("taobaomaster");
+		ds.setPassword("taobaomaster5566");
+		
+		
+		//try to fix error:  SQL Error: 0, SQLState: null
+		ds.setValidationQuery("SELECT 1+1");
+		ds.setTestOnBorrow(true);
+				
+				
+		return ds;
+	}*/
 	
 	
 	

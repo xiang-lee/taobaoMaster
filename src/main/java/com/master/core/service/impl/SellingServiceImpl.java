@@ -66,6 +66,7 @@ public class SellingServiceImpl implements SellingService{
 		s.setSoldToFriend(newSelling.isSoldToFriend());
 		s.setStockpile(newSelling.getStockpile());
 		s.setUnitPrice(newSelling.getUnitPrice());
+		s.setComment(newSelling.getComment());
 	}
 
 	@Override
