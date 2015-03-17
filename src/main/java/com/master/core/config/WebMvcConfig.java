@@ -177,33 +177,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	}
 	
 	
-	//use dbcp
-	/*@Bean(name = "dataSource")
-	public BasicDataSource dataSource() {
-		
-		BasicDataSource ds = new BasicDataSource();
-	    ds.setDriverClassName("com.mysql.jdbc.Driver");
-	    
-	    //local host
-//		ds.setUrl("jdbc:mysql://localhost:3306/dressads");
-//		ds.setUsername("root");
-//		ds.setPassword("xiang55");
-		
-		
-		//aws rds
-		ds.setUrl("jdbc:mysql://taobaomaster.c6wolwxvnl1t.eu-central-1.rds.amazonaws.com:3306/taobaomaster");
-		ds.setUsername("taobaomaster");
-		ds.setPassword("taobaomaster5566");
-		
-		
-		//try to fix error:  SQL Error: 0, SQLState: null
-		ds.setValidationQuery("SELECT 1+1");
-		ds.setTestOnBorrow(true);
-				
-				
-		return ds;
-	}*/
-	
 	
 	
 	@Bean
