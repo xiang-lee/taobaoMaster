@@ -22,7 +22,7 @@ public class Order {
 	private String name;
 	private Date recordDate;
 	private int quantity;
-	private Timestamp insertTime;
+	private Timestamp insertTime = new Timestamp(new java.util.Date().getTime());;
 	private double unitPrice;
 	private String currency=Currency.euro.getLabel();
 	private double exchangeRate;
