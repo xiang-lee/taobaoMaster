@@ -29,40 +29,7 @@ module.exports = function (grunt) {
 
 
 
-    //ng constant for environment variables, it's for dev and pro aipEndpoit
-    //it's added in "grunt serve" for development
-    //it's added in "grunt build" for producation
-    ngconstant: {
-      // Options for all targets
-      options: {
-          space: '  ',
-          wrap: '"use strict";\n\n {%= __ngModule %}',
-          name: 'config',
-      },
-      // Environment targets
-      dev: {
-        options: {
-          dest: '<%= yeoman.app %>/scripts/config.js'
-        },
-        constants: {
-          ENV: {
-            name: 'development',
-            apiEndpoint: 'http://localhost:8081/'
-          }
-        }
-      },
-      pro: {
-        options: {
-          dest: '<%= yeoman.app %>/scripts/config.js'
-        },
-        constants: {
-          ENV: {
-            name: 'producation',
-            apiEndpoint: 'http://dressads.com/'
-          }
-        }
-      }
-    },
+    
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -423,7 +390,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'ngconstant:dev',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -448,7 +414,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'ngconstant:pro',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

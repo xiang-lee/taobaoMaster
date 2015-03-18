@@ -123,6 +123,7 @@ public class OAuth2ServerConfig {
 			 			.withClient("sdd")
 			 			.resourceIds(DRESSADS_RESOURCE_ID)
 			 			.authorizedGrantTypes("password","authorization_code", "implicit")
+//			 			.authorizedGrantTypes("password","authorization_code", "implicit","refresh_token")
 //			 			.authorities("ROLE_CLIENT")
 			 			.authorities("USER")
 			 			.scopes("read", "write")
