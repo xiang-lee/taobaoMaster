@@ -41,7 +41,13 @@ userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
 
   var currentStateName = $state.current.name;
   //open foo table plugin
-  $('.footable').footable();
+  // $('.footable').footable();
+  // setTimeout(function(){
+  //   $('.footable').footable();
+  //   console.log('test! time out');
+  //   }, 1000);
+
+
   $scope.newOrder = {};
    $scope.initializeOrders = function() {
     //if current state is stockpile, invoke getStockpiles
@@ -97,7 +103,6 @@ userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
       order.remain = parseInt(order.remain,10);
       userService.updateBuying(order).then(function(res){
         notify('更新成功');
-        $scope.initializeOrders();
       });
    };
 
@@ -190,7 +195,6 @@ userCtrls.controller('sellingCtrl', function ($scope,$state,notify,
       order.exchangeRate = parseFloat(order.exchangeRate).toFixed(2);
       userService.updateSelling(order).then(function(res){
         notify('更新成功');
-        $scope.initializeOrders();
       },function(error){
         notify('少女，更新失败，检查日期的格式是否正确？');
       });
