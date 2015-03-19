@@ -76,7 +76,6 @@ public class OAuth2ServerConfig {
 				.authorizeRequests()
 				
 				
-//.antMatchers("/login/**").access("#oauth2.hasScope('read')")
 .antMatchers("/order/**").access("#oauth2.hasScope('read')")
 .antMatchers("/user/**").access("#oauth2.hasScope('read')")		
 
