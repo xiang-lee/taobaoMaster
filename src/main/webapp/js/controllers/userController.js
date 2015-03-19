@@ -42,10 +42,9 @@ userCtrls.controller('buyingCtrl', function ($scope,$state,userService,
   var currentStateName = $state.current.name;
   //open foo table plugin
   // $('.footable').footable();
-  // setTimeout(function(){
-  //   $('.footable').footable();
-  //   console.log('test! time out');
-  //   }, 1000);
+    setTimeout(function(){
+    $('.footable').footable();
+    }, 500);
 
 
   $scope.newOrder = {};
@@ -126,7 +125,12 @@ userCtrls.controller('sellingCtrl', function ($scope,$state,notify,
 
    var currentStateName = $state.current.name;
   //open foo table plugin
-  $('.footable').footable();
+  // $('.footable').footable();
+   setTimeout(function(){
+    $('.footable').footable();
+    }, 500);
+
+
   $scope.newOrder = {};
    $scope.initializeOrders = function() {
     //if current state is stockpile, invoke getStockpiles
