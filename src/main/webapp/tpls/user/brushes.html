@@ -25,7 +25,7 @@
 		<tbody>
 			<tr>
 				<td>
-					<input ng-model="newOrder.name" type="text"/>
+					<textarea ng-model="newOrder.name" ></textarea>
 				</td>
 
 				<td>
@@ -100,7 +100,7 @@
 			<tr ng-repeat="order in orders">
 				<!-- <td>{{order.id}}</td> -->
 				<td>
-					<input ng-model="order.name" type="text"/>
+					<textarea ng-model="order.name" ></textarea>
 					<span ng-hide=true>{{order.name}}</span>
 				</td>
 
