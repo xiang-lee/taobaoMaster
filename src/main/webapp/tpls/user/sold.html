@@ -12,7 +12,7 @@
 <h3 align="center"><span class="label label-primary">添加卖出信息</span></h3>
 <hr>
 <div align="center">
-	<table class="footable" style="width:98%;" data-filter="#filter" border="1"  align="center">
+	<table class="footable" style="width:95%;" data-filter="#filter" border="1"  align="center">
 		<thead>
 			<tr>
 				<th data-sort-ignore="true">物品名称</th>
@@ -37,7 +37,7 @@
 		<tbody>
 			<tr>
 				<td>
-					<input ng-model="newOrder.name" type="text"/>
+					<textarea ng-model="newOrder.name" ></textarea>
 				</td>
 
 				<td>
@@ -119,7 +119,7 @@
 <div align="center">搜索:<input id="filter" type="text" ></div>
 
 <div align="center">
-	<table class="footable" style="width:98%;" data-filter="#filter" data-page-size="2" data-page-navigation=".pagination"  border="1"  align="center">
+	<table class="footable" style="width:95%;" data-filter="#filter" data-page-size="2" data-page-navigation=".pagination"  border="1"  align="center">
 		<thead>
 			<tr>
 				<!-- data-sort-ignore="true" -->
@@ -151,7 +151,7 @@
 			<tr ng-repeat="order in orders">
 				<!-- <td>{{order.id}}</td> -->
 				<td>
-					<input ng-model="order.name" type="text"/>
+					<textarea ng-model="order.name" ></textarea>
 					<span ng-hide=true>{{order.name}}</span>
 				</td>
 
