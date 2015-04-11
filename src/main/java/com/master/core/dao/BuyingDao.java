@@ -1,13 +1,12 @@
 package com.master.core.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.master.core.demain.Buying;
 
 
 
-public interface BuyingDao extends GeneralDAO<Buying, Serializable>{
+public interface BuyingDao extends GeneralDAO<Buying, Long>{
 
 
 

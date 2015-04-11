@@ -62,7 +62,7 @@ public class TestBuyingService
     public void testUpdateBuying()  {
     	Buying buying = new Buying();
     	buying.setId(4);
-    	buying.setName("UGG898989");
+    	buying.setName("test111");
     	buying.setArriveDate(Date.valueOf( "2015-05-15" ));
     	buying.setExchangeRate(7.5);
     	buying.setOrderNumber("abca123123");

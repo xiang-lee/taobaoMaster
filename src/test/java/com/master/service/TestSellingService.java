@@ -61,7 +61,7 @@ public class TestSellingService
     
     @Test
     public void testFindSellingById()  {
-    	Selling s = sellingService.findById(2);
+    	Selling s = sellingService.findById(15);
     	Assert.assertNotNull(s);
     	System.out.println(s);
     }
@@ -69,7 +69,7 @@ public class TestSellingService
     @Test
     public void testUpdateSelling()  {
     	Selling s = new Selling();
-    	s.setId(2);
+    	s.setId(15);
     	s.setBrush(true);
     	s.setBuyer("xiang");
     	s.setCurrency(Currency.euro.getLabel());

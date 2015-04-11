@@ -28,10 +28,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.master.core.dao.BuyingDao;
+import com.master.core.dao.GeneralDAO;
 import com.master.core.dao.SellingDao;
 import com.master.core.dao.StatisticDao;
 import com.master.core.dao.UserDao;
 import com.master.core.dao.impl.BuyingDaoImpl;
+import com.master.core.dao.impl.GeneralDAOImpl;
 import com.master.core.dao.impl.SellingDaoImpl;
 import com.master.core.dao.impl.StatisticDaoImpl;
 import com.master.core.dao.impl.UserDaoImpl;
@@ -94,6 +96,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
   	return new StatisticDaoImpl();
   }
     
+  
     /*
      * multipartResolver
      */
@@ -103,13 +106,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
       resolver.setMaxUploadSize(10000000); //10MB
       return resolver;
     }
-  /*  @Bean
-    public MultipartConfigElement multipartConfigElement() {
-        MultiPartConfigFactory factory = new MultiPartConfigFactory();
-        factory.setMaxFileSize("128KB");
-        factory.setMaxRequestSize("128KB");
-        return factory.createMultipartConfig();
-    }*/
 	
 	/*
 	 *   Spring MVC 3.1.x request mapping to URLs with a trailing .xxx (in a path vari able)

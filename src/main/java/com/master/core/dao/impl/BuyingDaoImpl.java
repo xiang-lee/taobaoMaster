@@ -1,12 +1,7 @@
 package com.master.core.dao.impl;
 
-import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,18 +11,10 @@ import com.master.core.demain.Buying;
 
 @Repository("BuyingDao")
 @Transactional
-public class BuyingDaoImpl extends GeneralDAOImpl<Buying, Serializable> implements BuyingDao{
+public class BuyingDaoImpl extends GeneralDAOImpl<Buying, Long> implements BuyingDao{
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	@Resource(name="sessionFactory")
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public BuyingDaoImpl() {
+		super(Buying.class);
 	}
 
 	@Override

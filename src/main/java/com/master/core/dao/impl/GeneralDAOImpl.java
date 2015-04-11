@@ -1,7 +1,6 @@
 package com.master.core.dao.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,10 +10,9 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.master.core.dao.GeneralDAO;
 
-public class GeneralDAOImpl<T, PK extends Serializable> implements GeneralDAO<T, Serializable>{
+public class GeneralDAOImpl<T, PK extends Serializable> implements GeneralDAO<T, PK>{
 
 	private Class<T> type;
 	
@@ -34,11 +32,17 @@ public class GeneralDAOImpl<T, PK extends Serializable> implements GeneralDAO<T,
         return type;
     }
 	
-	@SuppressWarnings("unchecked")  
-	public GeneralDAOImpl() {
-        this.type = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-    }
+//	@SuppressWarnings("unchecked")  
+//	public GeneralDAOImpl() {
+//        this.type = (Class<?>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+//    }
  
+	
+	public GeneralDAOImpl(Class<T> type) {
+        this.type = type;
+    }
+	
+	
 	@Override
 	public void save(T entity) {
 		sessionFactory.getCurrentSession().save(entity);
