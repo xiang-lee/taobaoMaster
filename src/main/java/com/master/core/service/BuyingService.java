@@ -15,4 +15,5 @@ public interface BuyingService {
 	List<Buying> findAllStockpiles();
 	List<Buying> findAllAdditions();
 	List<Buying> findAllStockpilesWithRemain();
+	List<Buying> findAll();
 }

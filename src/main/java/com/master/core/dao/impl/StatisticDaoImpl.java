@@ -48,6 +48,7 @@ public class StatisticDaoImpl implements StatisticDao {
 	 * 
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Statistic findStatistic() {
 		//Find five types of order

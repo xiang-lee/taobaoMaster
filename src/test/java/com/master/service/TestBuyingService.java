@@ -2,7 +2,6 @@ package com.master.service;
 import java.sql.Date;
 import java.util.List;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.master.core.dao.BuyingDao;
 import com.master.core.demain.Buying;
 import com.master.core.service.BuyingService;
 import com.master.core.service.UserService;
@@ -31,10 +32,13 @@ public class TestBuyingService
     BuyingService buyingService;
 
 
+	@Autowired
+	private BuyingDao buyingDao;
+	
     @Test
     public void testAddBuying()  {
     	Buying buying = new Buying();
-    	buying.setName("LUSH");
+    	buying.setName("LUSH88888");
     	buying.setArriveDate(Date.valueOf( "2015-05-15" ));
     	buying.setExchangeRate(7.5);
     	buying.setOrderNumber("abca123123");
@@ -49,7 +53,7 @@ public class TestBuyingService
     
     @Test
     public void testFindBuyingById()  {
-    	Buying buying = buyingService.findById(1);
+    	Buying buying = buyingService.findById(4);
     	Assert.assertNotNull(buying);
     	System.out.println(buying);
     }
@@ -57,8 +61,8 @@ public class TestBuyingService
     @Test
     public void testUpdateBuying()  {
     	Buying buying = new Buying();
-    	buying.setId(1);
-    	buying.setName("LUSH");
+    	buying.setId(4);
+    	buying.setName("UGG898989");
     	buying.setArriveDate(Date.valueOf( "2015-05-15" ));
     	buying.setExchangeRate(7.5);
     	buying.setOrderNumber("abca123123");
@@ -72,8 +76,16 @@ public class TestBuyingService
     
     @Test
     public void testDeleteBuyingById()  {
-    	buyingService.deleteBuying(1);
-    	Assert.assertNull(buyingService.findById(1));
+    	buyingService.deleteBuying(59);
+    	Assert.assertNull(buyingService.findById(59));
+    }
+    
+    @Test
+    public void testFindAllBuying()  {
+    	List<Buying> buyings = buyingService.findAll();
+    	for (Buying buying : buyings) {
+			System.out.println(buying);
+		}
     }
     
     /*
@@ -81,7 +93,7 @@ public class TestBuyingService
      */
     @Test
     public void testFindAllStockpiles()  {
-    	List<Buying> stockpiles = buyingService.findAllStockpiles();
+    	List<Buying> stockpiles = buyingService.findAllStockpilesWithRemain();
     	for (Buying stockpile : stockpiles) {
 			System.out.println(stockpile);
 		}

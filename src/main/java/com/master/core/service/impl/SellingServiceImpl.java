@@ -30,7 +30,7 @@ public class SellingServiceImpl implements SellingService{
 				stockpile.setRemain(stockpile.getRemain()-selling.getQuantity());
 			}
 		}
-		sellingDao.addSelling(selling);
+		sellingDao.save(selling);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class SellingServiceImpl implements SellingService{
 
 	@Override
 	public void deleteSelling(long id) {
-		sellingDao.deleteSelling(sellingDao.findById(id));
+		sellingDao.delete(sellingDao.findById(id));
 	}
 
 	@Override

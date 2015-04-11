@@ -1,5 +1,6 @@
 package com.master.core.dao.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,7 +16,7 @@ import com.master.core.demain.Buying;
 
 @Repository("BuyingDao")
 @Transactional
-public class BuyingDaoImpl implements BuyingDao {
+public class BuyingDaoImpl extends GeneralDAOImpl<Buying, Serializable> implements BuyingDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -30,25 +31,8 @@ public class BuyingDaoImpl implements BuyingDao {
 	}
 
 	@Override
-	public void addBuying(Buying buying) {
-		sessionFactory.getCurrentSession().save(buying);
-	}
-
-	@Override
-	public Buying findById(long id) {
-		return (Buying) sessionFactory.getCurrentSession().createQuery("from Buying where id=:id")
-				.setParameter("id", id).uniqueResult();
-	}
-
-	@Override
-	public void deleteBuying(Buying buying) {
-		sessionFactory.getCurrentSession().delete(buying);
-	}
-
-	@Override
 	public void updateBuying(Buying buying) {
-		Buying b = (Buying)sessionFactory.getCurrentSession().createQuery("from Buying where id=:id")
-				.setParameter("id", buying.getId()).uniqueResult();
+		Buying b = findById(buying.getId());
 		b.setArriveDate(buying.getArriveDate());
 		b.setCurrency(buying.getCurrency());
 		b.setExchangeRate(buying.getExchangeRate());
@@ -63,22 +47,22 @@ public class BuyingDaoImpl implements BuyingDao {
 		b.setComment(buying.getComment());
 	}
 
+	@SuppressWarnings("unchecked") 
 	@Override
 	public List<Buying> findAllStockpiles() {
-		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=true order by id desc").list();
+		return find("from Buying where stockpile=? order by id desc", true);
 	}
 
+	@SuppressWarnings("unchecked") 
 	@Override
 	public List<Buying> findAllAdditions() {
-		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=false order by id desc").list();
+		return find("from Buying where stockpile=? order by id desc", false);
 	}
 
+	@SuppressWarnings("unchecked") 
 	@Override
 	public List<Buying> findAllStockpilesWithRemain() {
-		return sessionFactory.getCurrentSession().createQuery("from Buying where stockpile=true and remain>0 order by id desc").list();
+		return find("from Buying where stockpile=? and remain>0 order by id desc", true);
 	}
-
-	
-
 
 }

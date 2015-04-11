@@ -1,5 +1,6 @@
 package com.master.core.dao.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.master.core.dao.BuyingDao;
 import com.master.core.dao.SellingDao;
+import com.master.core.demain.Buying;
 import com.master.core.demain.Selling;
 
 
 @Repository("SellingDao")
 @Transactional
-public class SellingDaoImpl implements SellingDao {
+public class SellingDaoImpl extends GeneralDAOImpl<Selling, Serializable> implements SellingDao{
+//public class SellingDaoImpl implements SellingDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -29,21 +33,6 @@ public class SellingDaoImpl implements SellingDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
-	public void addSelling(Selling selling) {
-		sessionFactory.getCurrentSession().save(selling);
-	}
-
-	@Override
-	public Selling findById(long id) {
-		return (Selling)sessionFactory.getCurrentSession().createQuery("from Selling where id=:id")
-				.setParameter("id", id).uniqueResult();
-	}
-
-	@Override
-	public void deleteSelling(Selling selling) {
-		sessionFactory.getCurrentSession().delete(selling);
-	}
 
 	// Sold(卖出)		isSoldToFriend=false && isBrush=false
 	@Override

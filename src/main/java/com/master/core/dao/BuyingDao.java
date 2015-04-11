@@ -1,18 +1,16 @@
 package com.master.core.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.master.core.demain.Buying;
 
 
 
-public interface BuyingDao {
+public interface BuyingDao extends GeneralDAO<Buying, Serializable>{
 
-	void addBuying(Buying buying);
 
-	Buying findById(long id);
 
-	void deleteBuying(Buying buying);
 
 	void updateBuying(Buying buying);
 

@@ -18,7 +18,7 @@ public class BuyingServiceImpl implements BuyingService{
 
 	@Override
 	public void addBuying(Buying buying) {
-		buyingDao.addBuying(buying);
+		buyingDao.save(buying);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class BuyingServiceImpl implements BuyingService{
 	@Override
 	public void deleteBuying(long id) {
 		Buying buying = buyingDao.findById(id);
-		if(buying != null) buyingDao.deleteBuying(buying);
+		if(buying != null) buyingDao.delete(id);
 	}
 
 	@Override
@@ -50,6 +50,11 @@ public class BuyingServiceImpl implements BuyingService{
 	@Override
 	public List<Buying> findAllStockpilesWithRemain() {
 		return buyingDao.findAllStockpilesWithRemain();
+	}
+
+	@Override
+	public List<Buying> findAll() {
+		return buyingDao.findAll();
 	}
 
 	
