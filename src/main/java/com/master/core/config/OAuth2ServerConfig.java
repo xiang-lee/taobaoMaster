@@ -17,7 +17,6 @@ package com.master.core.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -54,8 +53,7 @@ import com.master.core.oauth.SddUserApprovalHandler;
 @Configuration
 public class OAuth2ServerConfig {
 
-	private static final String DRESSADS_RESOURCE_ID = "dressAds";
-
+	private static final String TAOBAOMASTER_RESOURCE_ID = "taobaoMaster";
 
 	@Configuration
 	@EnableResourceServer
@@ -63,7 +61,7 @@ public class OAuth2ServerConfig {
 		
 		@Override
 		public void configure(ResourceServerSecurityConfigurer resources) {
-			resources.resourceId(DRESSADS_RESOURCE_ID);
+			resources.resourceId(TAOBAOMASTER_RESOURCE_ID);
 		}
 
 		@Override
@@ -75,14 +73,9 @@ public class OAuth2ServerConfig {
 			.and()
 				.authorizeRequests()
 				
-				
 .antMatchers("/order/**").access("#oauth2.hasScope('read')")
 .antMatchers("/user/**").access("#oauth2.hasScope('read')")		
 
-					.antMatchers("/me").access("#oauth2.hasScope('read')")
-					.antMatchers("/photos").access("#oauth2.hasScope('read')")
-					.antMatchers("/photos/trusted/**").access("#oauth2.hasScope('trust')")
-					.antMatchers("/photos/user/**").access("#oauth2.hasScope('trust')")
 					.regexMatchers(HttpMethod.DELETE, "/oauth/users/([^/].*?)/tokens/.*")
 						.access("#oauth2.clientHasRole('ROLE_CLIENT') and (hasRole('ROLE_USER') or #oauth2.isClient()) and #oauth2.hasScope('write')")
 					.regexMatchers(HttpMethod.GET, "/oauth/clients/([^/].*?)/users/.*")
@@ -94,10 +87,6 @@ public class OAuth2ServerConfig {
 
 	}
 
-	
-	
-	
-	
 	@Configuration
 	@EnableAuthorizationServer
 	protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -112,15 +101,12 @@ public class OAuth2ServerConfig {
 		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;
 
-		@Value("${tonr.redirect:http://localhost:8081/tonr2/sparklr/redirect}")
-		private String tonrRedirectUri;
-
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 			// @formatter:off
 			clients.inMemory()
 			 			.withClient("sdd")
-			 			.resourceIds(DRESSADS_RESOURCE_ID)
+			 			.resourceIds(TAOBAOMASTER_RESOURCE_ID)
 			 			.authorizedGrantTypes("password","authorization_code", "implicit")
 //			 			.authorizedGrantTypes("password","authorization_code", "implicit","refresh_token")
 //			 			.authorities("ROLE_CLIENT")
@@ -154,9 +140,7 @@ public class OAuth2ServerConfig {
 
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-			oauthServer.realm("sparklr2/client");
-//			oauthServer.tokenKeyAccess("isAnonymous() || hasAuthority('ROLE_TRUSTED_CLIENT')").checkTokenAccess(
-//                    "hasAuthority('ROLE_TRUSTED_CLIENT')");
+			oauthServer.realm("taobaoMaster/client");
 		}
 
 	}
