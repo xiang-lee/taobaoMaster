@@ -7,10 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.master.core.dao.BuyingDao;
 import com.master.core.demain.Buying;
+import com.master.core.util.Page;
 
 
 @Repository("BuyingDao")
 @Transactional
+@SuppressWarnings("unchecked") 
 public class BuyingDaoImpl extends GeneralDAOImpl<Buying, Long> implements BuyingDao{
 
 	public BuyingDaoImpl() {
@@ -34,22 +36,26 @@ public class BuyingDaoImpl extends GeneralDAOImpl<Buying, Long> implements Buyin
 		b.setComment(buying.getComment());
 	}
 
-	@SuppressWarnings("unchecked") 
 	@Override
 	public List<Buying> findAllStockpiles() {
 		return find("from Buying where stockpile=? order by id desc", true);
 	}
 
-	@SuppressWarnings("unchecked") 
 	@Override
 	public List<Buying> findAllAdditions() {
 		return find("from Buying where stockpile=? order by id desc", false);
 	}
 
-	@SuppressWarnings("unchecked") 
 	@Override
 	public List<Buying> findAllStockpilesWithRemain() {
 		return find("from Buying where stockpile=? and remain>0 order by id desc", true);
 	}
+
+
+	@Override
+	public Page<Buying> findAllStockpiles(Page<Buying> page) {
+		return findPage(page, "from Buying where stockpile=? order by "+page.getOrderBy()+" desc",true);
+	}
+
 
 }

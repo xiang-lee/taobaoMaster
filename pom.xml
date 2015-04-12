@@ -384,8 +384,13 @@
 			<version>1.2.16</version>
 		</dependency>
 		
+		<!-- org.apache.commons Stringutils  -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
 		
-
 		
 		
 	</dependencies>

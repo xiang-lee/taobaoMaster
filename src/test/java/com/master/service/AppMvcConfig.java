@@ -133,7 +133,7 @@ public class AppMvcConfig extends WebMvcConfigurerAdapter {
 
 	private Properties getHibernateProperties() {
         Properties prop = new Properties();
-        prop.put("hibernate.format_sql", "true");
+        prop.put("hibernate.format_sql", "false");
         prop.put("hibernate.show_sql", "true");
         prop.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return prop;

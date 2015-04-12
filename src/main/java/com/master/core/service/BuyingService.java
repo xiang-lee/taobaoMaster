@@ -3,6 +3,7 @@ package com.master.core.service;
 import java.util.List;
 
 import com.master.core.demain.Buying;
+import com.master.core.util.Page;
 
 
 
@@ -16,4 +17,5 @@ public interface BuyingService {
 	List<Buying> findAllAdditions();
 	List<Buying> findAllStockpilesWithRemain();
 	List<Buying> findAll();
+	Page<Buying> findAllStockpiles(Page<Buying> page);
 }

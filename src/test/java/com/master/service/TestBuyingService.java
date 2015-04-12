@@ -16,6 +16,7 @@ import com.master.core.dao.BuyingDao;
 import com.master.core.demain.Buying;
 import com.master.core.service.BuyingService;
 import com.master.core.service.UserService;
+import com.master.core.util.Page;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class,classes = AppMvcConfig.class)
@@ -98,5 +99,22 @@ public class TestBuyingService
 			System.out.println(stockpile);
 		}
     }
+    
+    /*
+     * Page
+     */
+	  @Test
+	  public void testBuyingPagination()  {
+	  	System.out.println("first page");
+	  	Page<Buying> page = new Page<Buying>(3);
+	  	page.setOrderBy("id");
+	  	Page<Buying> page1 = buyingService.findAllStockpiles(page);
+	  	List<Buying> buyings = page.getResult();
+	  	for (Buying buying : buyings) {
+			System.out.println(buying);
+		}
+	  	System.out.println("isHasPre:"+page1.isHasPre());
+	  	System.out.println("isHasNext:"+page1.isHasNext());
+	  }
     
 }  

@@ -3,6 +3,7 @@ package com.master.core.dao;
 import java.util.List;
 
 import com.master.core.demain.Buying;
+import com.master.core.util.Page;
 
 
 
@@ -19,5 +20,5 @@ public interface BuyingDao extends GeneralDAO<Buying, Long>{
 
 	List<Buying> findAllStockpilesWithRemain();
 
-	
+	Page<Buying> findAllStockpiles(Page<Buying> page);
 }

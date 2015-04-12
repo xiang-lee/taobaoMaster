@@ -3,6 +3,9 @@ package com.master.core.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.master.core.util.Page;
+
+
 public interface GeneralDAO<T, PK extends Serializable> {
 	public void save(T entity);
     public void delete(T entity);
@@ -11,7 +14,7 @@ public interface GeneralDAO<T, PK extends Serializable> {
     public T findById(final PK id);
     
     /**
-     * Press the HQL Query object list .
+     * Pass the HQL Query object list .
      * 
      * @param hql
      *            hqlStatement 
@@ -19,4 +22,6 @@ public interface GeneralDAO<T, PK extends Serializable> {
      *            Number of variable parameters 
      */
     public List find(String hql, Object... values);
+    
+    public Page<T> findAll(Page<T> page);
 }
