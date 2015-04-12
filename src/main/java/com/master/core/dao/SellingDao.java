@@ -3,6 +3,7 @@ package com.master.core.dao;
 import java.util.List;
 
 import com.master.core.demain.Selling;
+import com.master.core.orm.GeneralDAO;
 
 
 

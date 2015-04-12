@@ -1,55 +1,41 @@
-package com.master.core.dao.impl;
+package com.master.core.orm;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.internal.CriteriaImpl;
 import org.hibernate.transform.ResultTransformer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.master.core.dao.GeneralDAO;
+import com.master.core.orm.PropertyFilter.MatchType;
 import com.master.core.util.Page;
-import com.master.core.util.ReflectionUtils;
+import com.master.core.util.reflection.ReflectionUtils;
 
 @SuppressWarnings("unchecked")
-public class GeneralDAOImpl<T, PK extends Serializable> implements GeneralDAO<T, PK>{
+public class GeneralDAOImpl<T, PK extends Serializable> extends SimpleHibernateDao<T, PK> implements GeneralDAO<T, PK>{
 
 	private Class<T> type;
 	
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	@Resource(name="sessionFactory")
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public GeneralDAOImpl() {
+		super();
 	}
 	
 	public Class<T> getPersistentClass() {
         return type;
     }
-	
-//	@SuppressWarnings("unchecked")  
-//	public GeneralDAOImpl() {
-//        this.type = (Class<?>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-//    }
  
 	
 	public GeneralDAOImpl(Class<T> type) {
@@ -192,6 +178,38 @@ public class GeneralDAOImpl<T, PK extends Serializable> implements GeneralDAO<T,
 	}
 	
 	
+	//-- 属性过滤条件(PropertyFilter)查询函数 --//
+
+	/**
+	 * 按属性查找对象列表,支持多种匹配方式.
+	 * 
+	 * @param matchType 匹配方式,目前支持的取值见PropertyFilter的MatcheType enum.
+	 */
+	public List<T> findBy(final String propertyName, final Object value, final MatchType matchType) {
+		Criterion criterion = buildCriterion(propertyName, value, matchType);
+		return find(criterion);
+	}
+
+	/**
+	 * 按属性过滤条件列表查找对象列表.
+	 */
+	public List<T> find(List<PropertyFilter> filters) {
+		Criterion[] criterions = buildCriterionByPropertyFilter(filters);
+		return find(criterions);
+	}
+
+	/**
+	 * 按属性过滤条件列表分页查找对象.
+	 */
+	public Page<T> findPage(final Page<T> page, final List<PropertyFilter> filters) {
+		Criterion[] criterions = buildCriterionByPropertyFilter(filters);
+		return findPage(page, criterions);
+	}
+	
+	
+	
+	
+	
 	/*
 	 * Below are utility functions
 	 */
@@ -240,6 +258,7 @@ public class GeneralDAOImpl<T, PK extends Serializable> implements GeneralDAO<T,
 		q.setMaxResults(page.getPageSize());
 		return q;
 	}
+	
 	
 	/**
 	 * 设置分页参数到Criteria对象,辅助函数.
@@ -296,12 +315,58 @@ public class GeneralDAOImpl<T, PK extends Serializable> implements GeneralDAO<T,
 		return countHql;
 	}
 	
+	
 	/**
-	 * 按HQL查询唯一对象.
-	 * 
-	 * @param values 数量可变的参数,按顺序绑定.
+	 * 按属性条件参数创建Criterion,辅助函数.
 	 */
-	private <X> X findUnique(final String hql, final Object... values) {
-		return (X) createQuery(hql, values).uniqueResult();
+	protected Criterion buildCriterion(final String propertyName, final Object propertyValue, final MatchType matchType) {
+		Assert.hasText(propertyName, "propertyName不能为空");
+		Criterion criterion = null;
+		//根据MatchType构造criterion
+		switch (matchType) {
+		case EQ:
+			criterion = Restrictions.eq(propertyName, propertyValue);
+			break;
+		case LIKE:
+			criterion = Restrictions.like(propertyName, (String) propertyValue, MatchMode.ANYWHERE);
+			break;
+
+		case LE:
+			criterion = Restrictions.le(propertyName, propertyValue);
+			break;
+		case LT:
+			criterion = Restrictions.lt(propertyName, propertyValue);
+			break;
+		case GE:
+			criterion = Restrictions.ge(propertyName, propertyValue);
+			break;
+		case GT:
+			criterion = Restrictions.gt(propertyName, propertyValue);
+		}
+		return criterion;
 	}
+	
+	/**
+	 * 按属性条件列表创建Criterion数组,辅助函数.
+	 */
+	protected Criterion[] buildCriterionByPropertyFilter(final List<PropertyFilter> filters) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		for (PropertyFilter filter : filters) {
+			if (!filter.hasMultiProperties()) { //只有一个属性需要比较的情况.
+				Criterion criterion = buildCriterion(filter.getPropertyName(), filter.getMatchValue(), filter
+						.getMatchType());
+				criterionList.add(criterion);
+			} else {//包含多个属性需要比较的情况,进行or处理.
+				Disjunction disjunction = Restrictions.disjunction();
+				for (String param : filter.getPropertyNames()) {
+					Criterion criterion = buildCriterion(param, filter.getMatchValue(), filter.getMatchType());
+					disjunction.add(criterion);
+				}
+				criterionList.add(disjunction);
+			}
+		}
+		return criterionList.toArray(new Criterion[criterionList.size()]);
+	}
+	
+	
 }

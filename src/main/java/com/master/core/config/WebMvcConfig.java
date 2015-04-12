@@ -28,15 +28,15 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.master.core.dao.BuyingDao;
-import com.master.core.dao.GeneralDAO;
 import com.master.core.dao.SellingDao;
 import com.master.core.dao.StatisticDao;
 import com.master.core.dao.UserDao;
 import com.master.core.dao.impl.BuyingDaoImpl;
-import com.master.core.dao.impl.GeneralDAOImpl;
 import com.master.core.dao.impl.SellingDaoImpl;
 import com.master.core.dao.impl.StatisticDaoImpl;
 import com.master.core.dao.impl.UserDaoImpl;
+import com.master.core.orm.GeneralDAO;
+import com.master.core.orm.GeneralDAOImpl;
 import com.master.core.service.BuyingService;
 import com.master.core.service.SellingService;
 import com.master.core.service.StatisticService;

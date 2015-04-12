@@ -1,4 +1,4 @@
-package com.master.core.dao;
+package com.master.core.orm;
 
 import java.io.Serializable;
 import java.util.List;

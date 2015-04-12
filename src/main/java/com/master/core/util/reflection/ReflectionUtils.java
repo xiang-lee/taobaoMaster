@@ -1,4 +1,4 @@
-package com.master.core.util;
+package com.master.core.util.reflection;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
