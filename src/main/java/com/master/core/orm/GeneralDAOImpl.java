@@ -21,7 +21,6 @@ import org.hibernate.transform.ResultTransformer;
 import org.springframework.util.Assert;
 
 import com.master.core.orm.PropertyFilter.MatchType;
-import com.master.core.util.Page;
 import com.master.core.util.reflection.ReflectionUtils;
 
 @SuppressWarnings("unchecked")

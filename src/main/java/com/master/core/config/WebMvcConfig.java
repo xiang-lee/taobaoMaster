@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Properties;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -35,8 +34,6 @@ import com.master.core.dao.impl.BuyingDaoImpl;
 import com.master.core.dao.impl.SellingDaoImpl;
 import com.master.core.dao.impl.StatisticDaoImpl;
 import com.master.core.dao.impl.UserDaoImpl;
-import com.master.core.orm.GeneralDAO;
-import com.master.core.orm.GeneralDAOImpl;
 import com.master.core.service.BuyingService;
 import com.master.core.service.SellingService;
 import com.master.core.service.StatisticService;

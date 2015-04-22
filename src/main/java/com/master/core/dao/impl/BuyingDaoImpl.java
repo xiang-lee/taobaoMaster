@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.master.core.dao.BuyingDao;
 import com.master.core.demain.Buying;
 import com.master.core.orm.GeneralDAOImpl;
-import com.master.core.util.Page;
+import com.master.core.orm.Page;
 
 
 @Repository("BuyingDao")

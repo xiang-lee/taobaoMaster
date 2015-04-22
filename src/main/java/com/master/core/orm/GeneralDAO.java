@@ -3,8 +3,6 @@ package com.master.core.orm;
 import java.io.Serializable;
 import java.util.List;
 
-import com.master.core.util.Page;
-
 
 public interface GeneralDAO<T, PK extends Serializable> {
 	public void save(T entity);

@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.master.core.config.WebMvcConfig;
 import com.master.core.demain.Buying;
 import com.master.core.demain.Selling;
 import com.master.core.demain.enu.Currency;
@@ -21,7 +21,7 @@ import com.master.core.service.SellingService;
 import com.master.core.service.StatisticService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader=AnnotationConfigContextLoader.class,classes = AppMvcConfig.class)
+@ContextConfiguration(classes = WebMvcConfig.class)
 @WebAppConfiguration
 @EnableWebMvc
 public class TestSellingService    

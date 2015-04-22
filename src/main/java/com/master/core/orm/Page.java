@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.master.core.util;
+package com.master.core.orm;
 
 import java.util.List;
 
